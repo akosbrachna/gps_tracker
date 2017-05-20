@@ -1,0 +1,9 @@
+CACHE MANIFEST
+#version: 1.0
+
+CACHE:
+web/favicon.ico
+web/pics/spinning_wheel.gif
+
+NETWORK:
+phone/main_phone/index
