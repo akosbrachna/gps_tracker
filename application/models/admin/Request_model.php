@@ -160,7 +160,7 @@ class Request_model extends CI_Model
         return $this->db->trans_complete();
     }
     
-    public function cancel_outgoing_request()
+    public function cancel_request()
     {
         return $this->db->where('id', $this->input->post('id', true))->delete('requests');
     }

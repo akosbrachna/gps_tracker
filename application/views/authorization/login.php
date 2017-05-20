@@ -7,14 +7,20 @@
     <script src="<?php echo base_url('web/js/libs/jsencrypt.min.js');?>"></script>
     <title>GPS Tracker</title>
     <style>
+    body{
+        background-color: rgb(245,245,245);
+    }
     #login_start_page{
         position: fixed;
         top: 50%;
         left: 50%;
-        margin-top: -180px;
-        margin-left: -120px;
+        margin-top: -220px;
+        margin-left: -160px;
         color: rgb(0,0,205);
         font-weight: bold;
+        padding: 10px 30px 40px 50px;
+        border: 2px rgb(200,200,255) solid;
+        background-color: rgb(255,255,255);
     }
     #login_start_page input[type="checkbox"]{
         -ms-transform: scale(1.5); /* IE */
@@ -41,6 +47,7 @@
 </head>
 <body>
 <div id="login_start_page">
+    <h2 style="margin-left: -20px;">Welcome to GPS tracker</h2>
 <h3>Login  <a href="<?php echo base_url('signup') ?>">Register</a></h3>
 
 <?php echo form_open('', array('onsubmit' => "encrypt()")); ?>
