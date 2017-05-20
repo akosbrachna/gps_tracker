@@ -50,7 +50,7 @@ h5{
     <h5>I've sent a request to <font style="color:blue"><?php echo $records['email']; ?></font></h5>
     <br/><br/>
     <h5 style="margin-bottom: 10px;">Cancel my request</h5>
-    <?php echo form_open('admin/request/cancel_request'); ?>
+    <?php echo form_open('settings/request/cancel_request'); ?>
     <?php echo form_hidden('id', $records['id']); ?>
     <?php echo form_hidden('email', $records['email']); ?>
     <message></message>

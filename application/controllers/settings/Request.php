@@ -5,8 +5,8 @@ class Request extends Base_Controller
     function __construct() 
     {
         parent::__construct();
-        $this->load->model('admin/user_model');
-        $this->load->model('admin/request_model');
+        $this->load->model('settings/user_model');
+        $this->load->model('settings/request_model');
     }
     
     public function send_request()
@@ -46,7 +46,7 @@ class Request extends Base_Controller
         $this->data['categories']        = $this->request_model->get_categories();
         $this->data['incoming_requests'] = $this->request_model->incoming_requests();
         $this->data['outgoing_requests'] = $this->request_model->outgoing_requests();
-        $this->load->view('admin/request/request', $this->data);
+        $this->load->view('settings/request/request', $this->data);
     }
     
     private function send_email()
@@ -87,12 +87,12 @@ class Request extends Base_Controller
         if ($this->data['records']['direction'] == 'incoming')
         {
             $this->data['photo'] = "web\pics\users\\".$this->data['records']['email'].".jpg";
-            $this->load->view('admin/request/incoming_request', $this->data);
+            $this->load->view('settings/request/incoming_request', $this->data);
         }
         else
         {
             $this->data['photo'] = "web\pics\users\\".$this->data['records']['email'].".jpg";
-            $this->load->view('admin/request/outgoing_request', $this->data);
+            $this->load->view('settings/request/outgoing_request', $this->data);
         }
     }
     

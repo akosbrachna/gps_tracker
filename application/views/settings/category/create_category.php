@@ -47,7 +47,7 @@ echo draw_table($this->data['records']);
 ?>
 
 <script>
-    form_attr.form_ref     = 'admin/category/get_category/';
+    form_attr.form_ref     = 'settings/category/get_category/';
     form_attr.dialog_title = 'Category Form';
     form_attr.table_row = table_row;
 </script>
@@ -56,7 +56,7 @@ echo draw_table($this->data['records']);
 function get_user(id)
 {
     $('#spinning_wheel').fadeIn(200);
-    $.get('admin/category/get_category/'+ id , function(data) 
+    $.get('settings/category/get_category/'+ id , function(data) 
     {
         $('#spinning_wheel').fadeOut(200);
         $('#main_form').html(data);

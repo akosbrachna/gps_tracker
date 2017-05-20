@@ -5,47 +5,11 @@ class User extends Base_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('user/user_model');
+        $this->load->model('settings/user_model');
         $this->load->helper('my_table_helper');
         $this->data['photo'] = 'web\pics\users\\'.$this->session->userdata('email').'.jpg';
     }
     
-    public function register()
-    {   
-        if ($_SERVER['REQUEST_METHOD'] === 'POST')
-        {
-            $this->load->library('form_validation');
-            $this->form_validation->set_rules('address', 'Address', 'trim|required');
-            $this->form_validation->set_rules('phone_number', 'Phone number', 'trim|required');
-            $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]|max_length[16]|matches[confirm_password]');
-            $this->form_validation->set_rules('confirm_password', 'Confirm password', 'trim|required');
-            
-            if ($this->form_validation->run())
-            {
-                if ($this->user_model->save_user_form_on_first_login() == false)
-                {
-                    $this->data['message'] = 'Form has not been saved.';
-                }
-                else
-                {
-                    $this->save_photo();
-                    if ($this->session->userdata('phone') == 1)
-                    {
-                        redirect('main/phone');
-                    }
-                    else 
-                    {
-                        redirect('main');
-                    }
-                }
-            }
-        }
-        $this->data['header_title'] = 'Register';
-        $this->load->view('templates/main/header', $this->data);
-        $this->load->view('user/register', $this->data);
-        $this->load->view('templates/main/footer');
-    }
-
     private function save_photo()
     {
         $config['upload_path']   = FCPATH.'web\pics\users\\';
@@ -98,6 +62,6 @@ class User extends Base_Controller
             return;
         }
         $this->data['records'] = $this->user_model->get_user($this->session->userdata('id'));
-        $this->load->view('user/user_settings', $this->data);
+        $this->load->view('settings/user/user_settings', $this->data);
     }
 }

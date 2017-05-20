@@ -6,7 +6,7 @@ class Category extends Base_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('admin/category_model');
+        $this->load->model('settings/category_model');
         $this->load->helper('my_table_helper');
     }
         
@@ -42,7 +42,7 @@ class Category extends Base_Controller
             return;
         }
         $this->data['records'] = $this->category_model->get_categories();
-        $this->load->view('admin/category/create_category', $this->data);
+        $this->load->view('settings/category/create_category', $this->data);
     }
 
     public function get_categories()
@@ -53,13 +53,13 @@ class Category extends Base_Controller
             $this->data['message'] = 'No category.';
         }
         $this->send_messages();
-        $this->load->view('admin/category/category', $this->data);
+        $this->load->view('settings/category/category', $this->data);
     }
     
     public function get_category($id)
     {
         $this->data['records'] = $this->category_model->get_category($id);
-        $this->load->view('admin/category/get_category', $this->data);
+        $this->load->view('settings/category/get_category', $this->data);
     }
     
     public function modify_category()

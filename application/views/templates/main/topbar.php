@@ -3,7 +3,7 @@
 <div id='top_bar'>
     <img id="bgWave" src="web/pics/background.jpg">
     <ul id="nav">
-        <li><a class="user_settings" href="users/user/change_user_settings">
+        <li><a class="user_settings" href="settings/user/change_user_settings">
                 <?php echo $this->session->userdata('email'); ?></a>
         <?php if ($this->router->class != 'Auth' && $this->router->method != 'login'): ?>
         <a href="<?php echo base_url() ?>authorization/login/logout">Logout</a></li>
@@ -44,7 +44,7 @@ $(".user_settings").click(function(e)
     $('#spinning_wheel').fadeIn(200);
     e.preventDefault();
     e.stopPropagation();
-    $.get('users/user/change_user_settings' , function(data) {
+    $.get('settings/user/change_user_settings' , function(data) {
         $('#spinning_wheel').fadeOut(200);
         $('#main_form').html(data);
         $('#main_form').dialog({autoOpen: true,

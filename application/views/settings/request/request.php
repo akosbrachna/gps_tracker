@@ -64,7 +64,7 @@ echo draw_table($this->data['outgoing_requests']);
 ?>
 </div>
 <script>
-    form_attr.form_ref     = 'admin/request/get_request/';
+    form_attr.form_ref     = 'settings/request/get_request/';
     form_attr.dialog_title = 'Request Form';
     form_attr.table_row = table_row;
 </script>
@@ -73,7 +73,7 @@ echo draw_table($this->data['outgoing_requests']);
 function get_request(id)
 {
     $('#spinning_wheel').fadeIn(200);
-    $.get('admin/request/get_request/'+ id , function(data) 
+    $.get('settings/request/get_request/'+ id , function(data) 
     {
         $('#spinning_wheel').fadeOut(200);
         $('#main_form').html(data);

@@ -78,7 +78,7 @@ h5{
     <h5 style="margin-bottom: 10px;">
         <?php echo $records['name']; ?> would like to follow you.<br/>
         Accept <?php echo $records['name']; ?>'s request</h5>
-    <?php echo form_open('admin/request/accept_request'); ?>
+    <?php echo form_open('settings/request/accept_request'); ?>
         <?php echo form_hidden('id', $records['id']); ?>
         <?php echo form_hidden('email', $records['email']); ?>
         <table>
@@ -98,7 +98,7 @@ h5{
 
 <div class="get_request">
     <h5 style="margin-bottom: 10px;">Cancel <?php echo $records['name']; ?>'s request</h5>
-<?php echo form_open('admin/request/cancel_request'); ?>
+<?php echo form_open('settings/request/cancel_request'); ?>
 <?php echo form_hidden('id', $records['id']); ?>
 <?php echo form_hidden('email', $records['email']); ?>
 <message></message>

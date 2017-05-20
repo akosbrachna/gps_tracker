@@ -40,7 +40,7 @@ h5{
 <div class="modify_category">
     <h5>Category settings</h5>
     <hr>
-<?php echo form_open('admin/category/modify_category'); ?>
+<?php echo form_open('settings/category/modify_category'); ?>
 <?php echo form_hidden('id', $records['id']); ?>
 <table>
     <tbody>
@@ -80,7 +80,7 @@ h5{
 <div class="modify_category">
     <h5>Delete the <?php echo $records['name']; ?> category</h5>
     <br/>
-<?php echo form_open('admin/category/delete_category'); ?>
+<?php echo form_open('settings/category/delete_category'); ?>
 <?php echo form_hidden('id', $records['id']); ?>
     <?php echo form_hidden('name', $records['name']); ?>
 <message></message>

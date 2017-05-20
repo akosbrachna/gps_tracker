@@ -9,27 +9,6 @@ class User_model extends CI_Model
             $this->db = $this->load->database('default', TRUE);
     }
     
-    // user/register
-    public function save_user_form_on_first_login()
-    {
-        $user = array(
-           'address'      => $this->input->post('address', true),
-           'phone_number' => $this->input->post('phone_number', true),
-           'password'     => md5($this->input->post('password', true)),
-           'first_login'  => 1
-        );
-        $id = $this->session->userdata('id');
-        
-        if ($this->db->where('id', $id)->update('user', $user))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    
     // user/change_user_settings
     public function save_user_settings_form()
     {

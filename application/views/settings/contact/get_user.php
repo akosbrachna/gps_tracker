@@ -87,7 +87,7 @@ h5{
 </div>
 <div class="get_user">
     <h5 style="margin-bottom: 10px;">Contact settings</h5>
-    <?php echo form_open('admin/user/modify_contact_settings'); ?>
+    <?php echo form_open('settings/contact/modify_contact_settings'); ?>
 <?php echo form_hidden('id', $records['id']); ?>
     <table>
     <tbody>
@@ -130,7 +130,7 @@ h5{
 
 <div class="get_user">
     <h5 style="margin-bottom: 10px;">Remove <?php echo $records['first_name']; ?> from my contacts</h5>
-<?php echo form_open('admin/user/remove_user'); ?>
+<?php echo form_open('settings/contact/remove_user'); ?>
 <?php echo form_hidden('id', $records['id']); ?>
     <?php echo form_hidden('email', $records['email']); ?>
 <message></message>
