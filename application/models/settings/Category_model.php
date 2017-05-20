@@ -67,7 +67,7 @@ class Category_model extends CI_Model
     
     public function modify_category()
     {
-        $id = $this->input->post('id', true);
+        $id       = $this->input->post('id', true);
         $category = $this->get_category($id);
         $old_name = $category['name'];
         $new_name = $this->input->post('name', true);
@@ -78,26 +78,34 @@ class Category_model extends CI_Model
             'permission' => $this->input->post('permission', true)
         );
 
-        if ($this->db->where('id', $id)->update('category', $data))
-        {
-            return $this->db->where('category', $old_name)
-                            ->where('owner', $this->session->userdata('email'))
-                            ->update('contacts', array('category' => $new_name));
-        }
-        return false;
+        $this->db->trans_start();
+        
+        $this->db->where('id', $id)->update('category', $data);
+        $this->db->where('category', $old_name)
+                 ->where('owner', $this->session->userdata('email'))
+                 ->update('contacts', array('category' => $new_name));
+
+        return $this->db->trans_complete();
     }
     
     public function delete_category()
     {
         $category = $this->input->post('name', true);
-        $owner = $this->session->userdata('email');
+        $owner    = $this->session->userdata('email');
         
         $this->db->trans_start();
         
-        $data = $this->db->where('category', $category)
-                         ->where('owner', $owner)
-                         ->get('contacts')
-                         ->result_array();
+        $contacts = $this->db->where('category', $category)
+                             ->where('owner', $owner)
+                             ->get('contacts')
+                             ->result_array();
+        
+        foreach ($contacts as $value) 
+        {
+            $this->db->where('owner', $value['member'])
+                     ->where('member', $owner)
+                     ->delete('contacts');
+        }
         
         $this->db->where('id', $this->input->post('id', true))
                  ->where('owner', $owner)
@@ -106,14 +114,7 @@ class Category_model extends CI_Model
         $this->db->where('category', $category)
                  ->where('owner', $owner)
                  ->delete('contacts');
-        
-        foreach ($data as $value) 
-        {
-            $this->db->where('owner', $value['member'])
-                     ->where('member', $owner)
-                     ->delete('contacts');
-        }
-        
+                
         $this->db->trans_complete();
     }
 }

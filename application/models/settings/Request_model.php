@@ -9,20 +9,12 @@ class Request_model extends CI_Model
             $this->db = $this->load->database('default', TRUE);
     }
     
-    public function user_exists() 
-    {  
-        $user = $this->db->where('email', strtolower($this->input->post('email', true)))
-                         ->get('user');
-        
-        return $user->num_rows();
-    }
-    
     public function get_categories()
     {
         $categories = $this->db->select('name')
-                           ->where('owner', $this->session->userdata('email'))
-                           ->get('category')
-                           ->result_array();
+                               ->where('owner', $this->session->userdata('email'))
+                               ->get('category')
+                               ->result_array();
         $data = array();
         foreach($categories as $value)
         {
@@ -78,9 +70,9 @@ class Request_model extends CI_Model
         $data = array();
         foreach ($requests as $key => $value) 
         {
-            $data[$key]['id'] = $value['id'];
+            $data[$key]['id']           = $value['id'];
             $data[$key]["Request from"] = $value['first_name'].' '.$value['last_name'].' '.$value['request_from'];
-            $data[$key]['Date sent'] = $value['date_created'];
+            $data[$key]['Date sent']    = $value['date_created'];
         }
         return $data;
     }
@@ -103,10 +95,10 @@ class Request_model extends CI_Model
         $data = array();
         foreach ($requests as $key => $value) 
         {
-            $data[$key]['id'] = $value['id'];
+            $data[$key]['id']              = $value['id'];
             $data[$key]["Request sent to"] = $value['first_name'].' '.$value['last_name'].' '.$value['request_to'];
-            $data[$key]['My category'] = $value['category'];
-            $data[$key]['Date sent'] = $value['date_created'];
+            $data[$key]['My category']     = $value['category'];
+            $data[$key]['Date sent']       = $value['date_created'];
         }
         return $data;
     }
@@ -119,7 +111,7 @@ class Request_model extends CI_Model
         if ($request[0]['request_from'] == $this->session->userdata('email'))
         {
             //outgoing
-            $request[0]['email'] = $request[0]['request_to'];
+            $request[0]['email']     = $request[0]['request_to'];
             $request[0]['direction'] = 'outgoing';
             return $request[0];
         }
@@ -130,9 +122,9 @@ class Request_model extends CI_Model
                            ->where('email', $request[0]['request_from'])
                            ->get('user')
                            ->result_array();
-            $data[0]['id'] = $request[0]['id'];
-            $data[0]['name'] = $in[0]['first_name'].' '.$in[0]['last_name'];
-            $data[0]['email'] = $in[0]['email'];
+            $data[0]['id']        = $request[0]['id'];
+            $data[0]['name']      = $in[0]['first_name'].' '.$in[0]['last_name'];
+            $data[0]['email']     = $in[0]['email'];
             $data[0]['direction'] = 'incoming';
             return $data[0];
         }
@@ -144,13 +136,13 @@ class Request_model extends CI_Model
                             ->get('requests')
                             ->result_array();
         $from = array(
-            'owner' => $request[0]['request_from'],
-            'member' => $request[0]['request_to'],
+            'owner'    => $request[0]['request_from'],
+            'member'   => $request[0]['request_to'],
             'category' => $request[0]['category']
         );
         $to = array(
-            'owner' => $request[0]['request_to'],
-            'member' => $request[0]['request_from'],
+            'owner'    => $request[0]['request_to'],
+            'member'   => $request[0]['request_from'],
             'category' => $this->input->post('category', true)
         );
         $this->db->trans_start();

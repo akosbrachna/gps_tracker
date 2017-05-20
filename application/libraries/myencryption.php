@@ -6,7 +6,7 @@ class myencryption
     {
         $keys = array();
         $config = array(
- 		'config' => 'e:/xampp/php/extras/openssl/openssl.cnf',
+ 		//'config' => 'e:/xampp/php/extras/openssl/openssl.cnf',
                 'private_key_bits' => 1024,
 		'private_key_type' => OPENSSL_KEYTYPE_RSA);
 
@@ -47,8 +47,8 @@ class myencryption
 	{
 		for ($i = 0; $i < $lp; $i++ )
 		{
-			if ($j*$lp+$i >= $lm) break;
-			$c[] = $a_m[$j*$lp+$i]^$a_p[$i];
+                    if ($j*$lp+$i >= $lm) break;
+                    $c[] = $a_m[$j*$lp+$i]^$a_p[$i];
 		}
 		$j++;
 	}

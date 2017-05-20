@@ -9,10 +9,33 @@
     <title>Reset password</title>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('web/css/libs/gumby/css/gumby.css');?>" media="screen" />
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('web/css/style.css');?>" media="screen" />
+    <style>
+     body{
+        background: rgb(235,235,235);
+        background-image: url("<?php echo base_url('web/pics/world_map.jpg'); ?>");
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+    #forgot_password
+    {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        margin-top: -170px;
+        margin-left: -290px;
+        color: rgb(0,0,205);
+        font-weight: bold;
+        padding: 10px 30px 40px 50px;
+        border: 2px rgb(200,200,255) solid;
+        background-color: rgb(255,255,255);
+    }
+    </style>
 </head>
 <body>
 
-<div id="login">
+<div id="forgot_password">
     
 <h3>Password reset</h3>
 

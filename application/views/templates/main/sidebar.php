@@ -14,7 +14,7 @@ body{
    margin: 0;
    padding-left: 5px;
    border-right: 1px solid #ccc; 
-   background: rgb(245,245,255);
+   background: rgb(250,250,255);
    display: none;
    overflow-y: hidden;
 }
@@ -37,6 +37,7 @@ body{
 }
 #sidebar .side_menu_item{
     color: #069;
+    font-size: 14px;
 }
 #side_pic{
     position: absolute;

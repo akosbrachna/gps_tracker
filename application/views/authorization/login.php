@@ -9,6 +9,11 @@
     <style>
     body{
         background-color: rgb(245,245,245);
+        background-image: url("<?php echo base_url('web/pics/world_map.jpg'); ?>");
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
     }
     #login_start_page{
         position: fixed;

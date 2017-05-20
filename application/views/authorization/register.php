@@ -7,13 +7,20 @@
     <title>GPS Tracker</title>
 <style>
 body{
-    background: rgb(235,235,235) !important;
+    background: rgb(235,235,235);
+    background-image: url("<?php echo base_url('web/pics/world_map.jpg'); ?>");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 #register_user
 {
-    margin-left: auto;
-    margin-right: auto;
-    width: 50% !important;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -220px;
+    margin-left: -270px;
     background: rgb(255,255,250) !important;
     padding: 20px;
     padding-top: 5px ;
