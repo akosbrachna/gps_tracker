@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
 <style>
-#map_canvas_users{
+#map_canvas_contacts{
     position: absolute;
     top: 0px;
     left: 0px;
@@ -10,10 +10,10 @@
     border: 2px solid rgb(200,200,255);
     overflow: hidden;
 }
-#map_canvas_users .gm-style img{
+#map_canvas_contacts .gm-style img{
     max-width: none !important;
 }
-#map_users{
+#map_contacts{
     position: absolute;
     top: 0px;
     right: 0px;
@@ -22,20 +22,20 @@
     border: 2px solid rgb(200,200,255);
     overflow: hidden;
 }
-#users_container{
+#contacts_container{
 	height: 100%;
 	width: 100%;
 	overflow: auto;
 }
 </style>
 
-<div id="map_canvas_users">
+<div id="map_canvas_contacts">
     <div style="position: absolute;top:50%;left:50%; margin-left: -300px;">
         <h2>Please wait, map info is loading...</h2>
     </div>
     
 </div>
-<div id="map_users"><div id="users_container"></div></div>
+<div id="map_contacts"><div id="contacts_container"></div></div>
 
 <script>
 $('#info_link').click(function(){
@@ -44,24 +44,26 @@ $('#info_link').click(function(){
 </script>
 
 <script>
-$("#map_canvas_users").height($(window).height()-46);
-$("#map_users").height($("#map_canvas_users").height());
+$("#map_canvas_contacts").height($(window).height()-46);
+$("#map_contacts").height($("#map_canvas_contacts").height());
 // GOOGLE MAP API V3 !!!
 
-function draw_map(latitude, longitude)
+map = new google.maps.Map(document.getElementById("map_canvas_contacts"), 
+                    { center:new google.maps.LatLng(0, 0),
+                      zoom: 7,
+                      mapTypeId: google.maps.MapTypeId.ROADMAP });
+
+var first_loaded = true;
+function center_map(latitude, longitude)
 {
     if (first_loaded)
     {
-        map = new google.maps.Map(document.getElementById("map_canvas_users"), 
-                            { center:new google.maps.LatLng(latitude, longitude),//53.4175, -7.90663),
-                              zoom: 7,
-                              mapTypeId: google.maps.MapTypeId.ROADMAP });
+        map.setZoom(7);
+        map.setCenter(new google.maps.LatLng(latitude, longitude));
         first_loaded = false;
         return;
     }
 }
-
-var first_loaded = true;
 
 var color_chooser = {
     matrix: [[0, 0, 128],
@@ -87,7 +89,7 @@ function show_users_on_map(data)
 
 function create_user(value)
 {
-    draw_map(value.latitude, value.longitude);
+    center_map(value.latitude, value.longitude);
     if (users[value.id]) return;
    //create new user in users array if not exists and initialize with markers array and color.
     users[value.id] = {};
@@ -234,7 +236,7 @@ function create_checkbox(value)
         label.appendChild(pic);
     }
 
-    document.getElementById('users_container').appendChild(label);
+    document.getElementById('contacts_container').appendChild(label);
     
     user.checkbox.onclick = function() 
     {        
@@ -266,7 +268,7 @@ function refresh_map()
 {
     $.ajax(
     {
-        url : 'map/map/show_users_on_map',
+        url : 'map/map/show_contacts_on_map',
         type: 'POST',
         data:{
             csrf_test_name: $.cookie('csrf_cookie_name'),
@@ -275,12 +277,12 @@ function refresh_map()
         success:function(data)
         {
             show_users_on_map($.parseJSON(data));
-            setTimeout(refresh_map, 5*60*1000);
+            setTimeout(refresh_map, 3*60*1000);
         },
         error: function(data)
         {
         }
     });
 }
-setTimeout(refresh_map, 1*3*1000);
+google.maps.event.addListenerOnce(map, 'idle', refresh_map);
 </script>

@@ -3,13 +3,13 @@
 About the application
 
 GPS tracker is a simple web based map tracking application which is still under development.
-It's not licensed. It can be used or modified freely.
+It can be used or modified freely.
 
 A device with a web browser and gps capability is needed to send gps locations to the website which can be 
 installed on any web server that runs on apache php mysql.
 Registered users share their gps locations through the website and can track each other on the map.
 Registered users have to send tracking requests to others on the website.
-Contact settings such as permissions or visibility can be enabled or disabled dynamically on each user.
+Contact settings such as permission or visibility can be enabled or disabled dynamically on each user.
 Contacts can be added or removed as well.
 Categories can be made such as friends, family etc. 
 Category settings (permission, visibility) are applied to all users in the selected category.
@@ -19,7 +19,7 @@ to the server so long as the phone's browser is open. You will also see your con
 
 An android application is being under development too and as a native application 
 it will be running as a foreground service.
-That project will also be shared on github and the apk will be available on the website too.
+That project will also be shared on github and the apk will be available on the website.
 
 
 The project

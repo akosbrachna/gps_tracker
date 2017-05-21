@@ -1,44 +1,77 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
 <style>
-#map_canvas_users{
+#map_canvas_phone{
     position: absolute;
-    top: 0px;
+    top: 55px;
     left: 0px;
     margin: 0px !important;
     width: 100%;
     height: 100%;
     overflow: hidden;
 }
-#map_canvas_users .gm-style img{
+#map_canvas_phone .gm-style img{
     max-width: none !important;
+}
+#phone_menu{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    padding: 0px;
+    margin: 0px !important;
+    height: 55px;
+    width: 100%;
+    overflow: hidden;
+    border: solid 1px rgb(200,200,255);
+    background: rgb(240,240,240);
+    font-weight: bold;
+}
+.phone_menu_item{
+    display: inline-block;
+    border-right: solid 1px rgb(200,200,255);
+    margin: 15px 5px 0px 10px;
+    padding: 0px 25px 0px 8px;
+}
+.phone_pages{
+    position: absolute;
+    top: 55px;
+    left:5px;
+    width: 100%;
+    overflow: hidden;
+    visibility: hidden;
 }
 </style>
 
-<div id="map_canvas_users">
-    <div style="position: absolute;top:50%;left:50%; margin-left: -300px;">
-        <h2>Please wait, map info is loading...</h2>
-    </div>
+<div id='phone_menu'>
+    <font class="phone_menu_item" value='map_canvas_phone'>Map</font>
+    <font class="phone_menu_item" value='phone_contacts'>Contacts</font>
+    <font class="phone_menu_item" value='phone_settings'>Settings</font>
 </div>
 
-<script>
-//$("#map_canvas_users").height($(window).height());
-// GOOGLE MAP API V3 !!!
+<div id='phone_settings' class="phone_pages">Settings</div>
+<div id='phone_contacts' class="phone_pages"></div>
 
-function draw_map(latitude, longitude)
+
+<div id="map_canvas_phone"></div>
+
+<script>
+
+map = new google.maps.Map(document.getElementById("map_canvas_phone"), 
+                    { center:new google.maps.LatLng(0, 0),
+                      zoom: 2,
+                      mapTypeId: google.maps.MapTypeId.ROADMAP });
+
+var first_loaded = true;
+function center_map(latitude, longitude)
 {
     if (first_loaded)
     {
-        map = new google.maps.Map(document.getElementById("map_canvas_users"), 
-                            { center:new google.maps.LatLng(latitude, longitude),//53.4175, -7.90663),
-                              zoom: 7,
-                              mapTypeId: google.maps.MapTypeId.ROADMAP });
+        map.setZoom(7);
+        map.setCenter(new google.maps.LatLng(latitude, longitude));
         first_loaded = false;
         return;
     }
 }
-
-var first_loaded = true;
 
 var color_chooser = {
     matrix: [[0, 0, 128],
@@ -64,7 +97,7 @@ function show_users_on_map(data)
 
 function create_user(value)
 {
-    draw_map(value.latitude, value.longitude);
+    center_map(value.latitude, value.longitude);
     if (users[value.id]) return;
    //create new user in users array if not exists and initialize with markers array and color.
     users[value.id] = {};
@@ -81,6 +114,7 @@ function create_user(value)
     users[value.id].name = value.first_name+' '+value.last_name;
     users[value.id].phone_number = value.phone_number;
     users[value.id].email = value.email;
+    create_checkbox(value);
 }
 
 function create_marker(value)
@@ -175,25 +209,121 @@ function draw_route(value)
     );
 }
 
+function create_checkbox(value)
+{
+    var user = users[value.id];
+
+    var markers = users[value.id].markers;
+
+    var label= document.createElement("label");
+    label.style.color = user.color;
+    label.style.width = "93%";
+    label.style.float = "left";
+    label.style.borderBottom = "2px solid "+user.color;
+    label.style.padding = "20px 2px 15px 2px";
+    
+    user.checkbox = document.createElement("input");
+    user.checkbox.type = "checkbox";
+    user.checkbox.checked = true;
+    user.checkbox.style.float = "left";
+    label.appendChild(user.checkbox);
+    
+    var name = document.createElement("div");
+    name.innerHTML = user.name;
+    name.style.float = "left";
+    label.appendChild(name);
+    
+    var phone = document.createElement("div");
+    phone.innerHTML = "phone: "+user.phone_number;
+    phone.style.marginLeft = "20px";
+    phone.style.float = "left";
+    phone.style.clear = "both";
+    label.appendChild(phone);
+    
+    var pic = document.createElement("img");
+    pic.src = src="<?php echo base_url('web/pics/users'); ?>/"+user.email+".jpg";
+    pic.style.height = "40px";
+    pic.style.marginLeft = "30px";
+    pic.onload = function(){
+        label.appendChild(pic);
+    }
+
+    document.getElementById('phone_contacts').appendChild(label);
+    
+    user.checkbox.onclick = function() 
+    {        
+        if (user.checkbox.checked) 
+        {
+            user.visible = true;
+            var i = markers.length-1;
+            markers[i].infowindow.open(map, markers[i]);
+            for (var x in markers)
+            {
+                markers[x].setVisible(true);
+                if (x > 0) markers[x].directionsDisplay.setMap(map);
+            }
+        } 
+        else 
+        {
+            user.visible = false;
+            for (var x in markers)
+            {
+                markers[x].infowindow.close();
+                markers[x].setVisible(false);
+                if (x > 0) markers[x].directionsDisplay.setMap(null);
+            }
+        }
+    }
+}
+</script>
+<script>
+function get_location() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(save_position);
+    } 
+    else {
+        alert("Geolocation is not supported on this browser.");
+    }
+}
+var my_latitude = 0;
+var my_longitude = 0;
+function save_position(position) 
+{
+    my_latitude  = position.coords.latitude;
+    my_longitude = position.coords.longitude;
+}
+
 function refresh_map()
 {
+    get_location();
     $.ajax(
     {
-        url : 'map/map/show_contacts_on_map',
+        url : 'phone/map/show_contacts_on_map',
         type: 'POST',
         data:{
             csrf_test_name: $.cookie('csrf_cookie_name'),
-            json: 'json'
+            json: 'json',
+            latitude: my_latitude,
+            longitude: my_longitude
         },
         success:function(data)
         {
             show_users_on_map($.parseJSON(data));
-            setTimeout(refresh_map, 5*60*1000);
+            setTimeout(refresh_map, 3*60*1000);
         },
         error: function(data)
         {
         }
     });
 }
-setTimeout(refresh_map, 1*3*1000);
+google.maps.event.addListenerOnce(map, 'idle', refresh_map);
+</script>
+<script>
+    var current_menu = "map_canvas_phone";
+    $('.phone_menu_item').click(function()
+    {
+        $('#'+current_menu).css('visibility', 'hidden');
+        current_menu = $(this).attr('value');
+        $('#'+current_menu).css('visibility', 'visible');
+    });
 </script>

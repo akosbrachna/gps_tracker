@@ -11,15 +11,10 @@ class Data_exchange_model extends CI_Model
     
     public function check_my_connection($email, $password)
     {
-        $data = $this->db->where('email', $email)
-                         ->where('password', $password)
-                         ->get('user');
-        
-        if ($data->num_rows() > 0 )
-        {
-            return true;
-        }
-        return false;
+        return $this->db->where('email', strtolower($email))
+                        ->where('password', md5($password))
+                        ->get('user')
+                        ->num_rows();
     }
     
     public function set_my_location($email, $password, $latitude, $longitude)
@@ -30,30 +25,33 @@ class Data_exchange_model extends CI_Model
             'longitude'       => $longitude,
             'gps_update_time' => date("Y-m-d H:i:s")
         );
-        $result = $this->db->where('email', $email)
-                           ->where('password', $password)
-                           ->update('user', $data);
-        
-        return $result;
+        return $this->db->where('email', strtolower($email))
+                        ->where('password', md5($password))
+                        ->update('user', $data);
     }
     
     public function get_contacts_locations($email, $password)
     {
+        $my_email = strtolower($email);
         $select = 'first_name, last_name, email, latitude, longitude, gps_update_time';
         
+        $owner = $this->db->select($select)
+                          ->where('email', $my_email)
+                          ->where('password', md5($password))
+                          ->get('user')
+                          ->result_array();
+        if (count($owner) != 1) return array();
+
         $users = $this->db->select($select)
                           ->from('user')
                           ->where('longitude IS NOT NULL')
                           ->join('contacts', 'contacts.member = user.email')
-                          ->where('contacts.owner', $email)
+                          ->where('contacts.owner', $my_email)
                           ->where('contacts.status', 'visible')
-                          ->join("(SELECT name, status FROM category WHERE owner='$email') as cat", 'cat.name = contacts.category')
+                          ->join("(SELECT name, status FROM category WHERE owner='$my_email') as cat", 'cat.name = contacts.category')
                           ->where('cat.status', 'visible')
                           ->order_by('first_name')
                           ->get()
-                          ->result_array();
-        $owner = $this->db->where('email', $this->session->userdata('email'))
-                          ->get('user')
                           ->result_array();
         $users[] = $owner[0];
         return $users;

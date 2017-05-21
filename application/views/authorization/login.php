@@ -48,12 +48,27 @@
     height: 100%;
     z-index: -1;
 }
+.login_footer{
+    background: rgb(245,245,245);
+    border: 2px rgb(200,200,255) solid;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 30px;
+}
+.login_footer a{
+    position: absolute;
+    left: 50%;
+    margin-left: -80px;
+    font-weight: bold;
+}
 </style>
 </head>
 <body>
     <img id="main_pic" src="<?php echo base_url('web/pics/world_map.jpg'); ?>" />
 <div id="login_start_page">
-    <h2 style="margin-left: -20px;">Welcome to GPS tracker</h2>
+    <h2 style="margin-left: -20px;">Welcome to GPS Tracker</h2>
 <h3>Login  <a href="<?php echo base_url('signup') ?>">Register</a></h3>
 
 <?php echo form_open('', array('onsubmit' => "encrypt()")); ?>
@@ -82,6 +97,10 @@ Password:<p> <?php echo form_password(array('name' => 'password',
 
 </div>
 
+<div class="login_footer">
+    <a href="https://github.com/akosbrachna/gps_tracker/" target="_blank">About GPS Tracker</a>
+</div>
+    
 <div id="msie_no_support">
     We are aware of the security issues on Internet Explorer, thus we do not support it. <br /><br />
     Please use some other browsers such as Firefox, Google Chrome, Safari etc. <br /><br />
