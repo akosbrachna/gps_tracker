@@ -47,7 +47,6 @@ class Login_model extends CI_Model
                 'logged_in'    => true,
                 'id'           => $user[0]['id'],
                 'email'        => $user[0]['email'],
-                'first_login'  => $user[0]['first_login'],
                 'phone'        => $phone
                 );
             $this->session->set_userdata($user_data);

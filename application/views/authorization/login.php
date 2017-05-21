@@ -11,8 +11,8 @@
     position: fixed;
     top: 50%;
     left: 50%;
-    margin-top: -220px;
-    margin-left: -160px;
+    margin-top: -230px;
+    margin-left: -180px;
     color: rgb(0,0,205);
     font-weight: bold;
     padding: 10px 30px 40px 50px;
@@ -67,6 +67,7 @@
 </head>
 <body>
     <img id="main_pic" src="<?php echo base_url('web/pics/world_map.jpg'); ?>" />
+    <div>
 <div id="login_start_page">
     <h2 style="margin-left: -20px;">Welcome to GPS Tracker</h2>
 <h3>Login  <a href="<?php echo base_url('signup') ?>">Register</a></h3>
@@ -96,7 +97,7 @@ Password:<p> <?php echo form_password(array('name' => 'password',
 <?php if (isset($message)) echo $message; ?>
 
 </div>
-
+    </div>
 <div class="login_footer">
     <a href="https://github.com/akosbrachna/gps_tracker/" target="_blank">About GPS Tracker</a>
 </div>

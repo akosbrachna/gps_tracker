@@ -34,8 +34,8 @@
 }
 .phone_pages{
     position: absolute;
-    top: 55px;
-    left:5px;
+    top: 60px;
+    left: 10px;
     width: 100%;
     overflow: hidden;
     visibility: hidden;
@@ -48,7 +48,9 @@
     <font class="phone_menu_item" value='phone_settings'>Settings</font>
 </div>
 
-<div id='phone_settings' class="phone_pages">Settings</div>
+<div id='phone_settings' class="phone_pages" style='padding:10px;'>
+    <a href="authorization/login/logout">Logout</a>
+</div>
 <div id='phone_contacts' class="phone_pages"></div>
 
 
@@ -126,8 +128,8 @@ function create_marker(value)
     if (i > 0)
     {
         var prev_marker = markers[i-1];
-        if (prev_marker.position.equals(latlng))
-            return;
+        //if (prev_marker.position.equals(latlng))
+          //  return;
         prev_marker.infowindow.close();
     }
 
@@ -309,7 +311,7 @@ function refresh_map()
         success:function(data)
         {
             show_users_on_map($.parseJSON(data));
-            setTimeout(refresh_map, 3*60*1000);
+            setTimeout(refresh_map, 1*20*1000);
         },
         error: function(data)
         {

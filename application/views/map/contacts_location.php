@@ -210,6 +210,7 @@ function create_checkbox(value)
     label.style.color = user.color;
     label.style.width = "93%";
     label.style.float = "left";
+    label.style.cursor = "pointer";
     label.style.borderBottom = "2px solid "+user.color;
     label.style.padding = "10px 2px 5px 2px";
     label.style.margin = "0px 0px 0px 5px";
