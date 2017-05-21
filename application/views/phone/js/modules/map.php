@@ -179,7 +179,7 @@ function refresh_map()
 {
     $.ajax(
     {
-        url : 'map/map/show_users_on_map',
+        url : 'map/map/show_contacts_on_map',
         type: 'POST',
         data:{
             csrf_test_name: $.cookie('csrf_cookie_name'),

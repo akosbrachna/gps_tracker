@@ -9,7 +9,7 @@ class Data_exchange_model extends CI_Model
         $this->db = $this->load->database('default', TRUE);
     }
     
-    public function check_user($email, $password)
+    public function check_my_connection($email, $password)
     {
         $data = $this->db->where('email', $email)
                          ->where('password', $password)
@@ -22,7 +22,7 @@ class Data_exchange_model extends CI_Model
         return false;
     }
     
-    public function get_coordinates($email, $password, $latitude, $longitude)
+    public function set_my_location($email, $password, $latitude, $longitude)
     {
         //date_default_timezone_set('UTC');
         $data = array(
@@ -37,25 +37,25 @@ class Data_exchange_model extends CI_Model
         return $result;
     }
     
-    public function get_user_coordinates($email, $password)
+    public function get_contacts_locations($email, $password)
     {
         $select = 'first_name, last_name, email, latitude, longitude, gps_update_time';
         
         $users = $this->db->select($select)
                           ->from('user')
-                          ->join('contacts', 'user.email = contacts.member')
-                          ->where('owner', $this->session->userdata('email'))
+                          ->where('longitude IS NOT NULL')
+                          ->join('contacts', 'contacts.member = user.email')
+                          ->where('contacts.owner', $email)
+                          ->where('contacts.status', 'visible')
+                          ->join("(SELECT name, status FROM category WHERE owner='$email') as cat", 'cat.name = contacts.category')
+                          ->where('cat.status', 'visible')
                           ->order_by('first_name')
                           ->get()
                           ->result_array();
-        
-        $me = $this->db->select($select)
-                       ->from('user')
-                       ->where('email', $this->session->userdata('email'))
-                       ->get()
-                       ->result_array();
-        
-        $users[] = $me[0];
+        $owner = $this->db->where('email', $this->session->userdata('email'))
+                          ->get('user')
+                          ->result_array();
+        $users[] = $owner[0];
         return $users;
     }
 }

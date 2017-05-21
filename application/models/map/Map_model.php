@@ -9,7 +9,7 @@ class Map_model extends CI_Model
             $this->db = $this->load->database('default', TRUE);
     }
     
-    public function show_users_on_map()
+    public function show_contacts_on_map()
     {
         $select = 'user.id, '
                 . 'first_name, '
@@ -19,13 +19,14 @@ class Map_model extends CI_Model
                 . 'gps_update_time, '
                 . 'latitude, '
                 . 'longitude ';
+        $owner = $this->session->userdata('email');
         $users = $this->db->select($select)
                           ->from('user')
                           ->where('longitude IS NOT NULL')
                           ->join('contacts', 'contacts.member = user.email')
-                          ->where('contacts.owner', $this->session->userdata('email'))
+                          ->where('contacts.owner', $owner)
                           ->where('contacts.status', 'visible')
-                          ->join('(SELECT name, status FROM category WHERE owner="akos.brachna@gmail.com") as cat', 'cat.name = contacts.category')
+                          ->join("(SELECT name, status FROM category WHERE owner='$owner') as cat", 'cat.name = contacts.category')
                           ->where('cat.status', 'visible')
                           ->order_by('first_name')
                           ->get()

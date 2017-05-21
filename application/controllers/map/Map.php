@@ -7,11 +7,11 @@ class Map extends Base_Controller
         parent::__construct();
         $this->load->model('map/map_model');
     }
-    public function show_users_on_map()
+    public function show_contacts_on_map()
     {
         if ($this->input->post('json', true)) 
         {
-            $this->data['records'] = $this->map_model->show_users_on_map();
+            $this->data['records'] = $this->map_model->show_contacts_on_map();
             echo json_encode($this->data['records']);
         }else
         {

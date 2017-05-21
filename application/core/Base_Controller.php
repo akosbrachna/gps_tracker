@@ -10,9 +10,9 @@ class Base_Controller extends CI_Controller
                 'authorization/reset_account/forgot_password',
                 'authorization/registration/register',
                 'authorization/registration/confirm',
-                'android/data_exchange/get_user_coordinates',
-                'android/data_exchange/get_coordinates',
-                'android/data_exchange/check_user'
+                'android/data_exchange/get_contacts_locations',
+                'android/data_exchange/set_my_location',
+                'android/data_exchange/check_my_connection'
         );
     function __construct()
     {

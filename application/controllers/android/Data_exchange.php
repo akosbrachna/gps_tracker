@@ -9,24 +9,28 @@ class Data_exchange extends Base_Controller
         $this->load->model('android/data_exchange_model');
     }
     
-    public function check_user($email, $password)
+    public function check_my_connection($email, $password)
     {
-        if ($this->data_exchange_model->check_user(strtolower($email), md5($password)))
+        if ($this->data_exchange_model->check_my_connection(strtolower($email), md5($password)))
+        {
                 echo 1;
-        else echo 0;
+        }
+        else
+        {
+            echo 0;
+        }
     }
     
-    public function get_coordinates($email, $password, $latitude, $longitude)
+    public function set_my_location($email, $password, $latitude, $longitude)
     {
-        echo $this->data_exchange_model->get_coordinates(strtolower($email), 
-                                                          md5($password), 
-                                                          $latitude, $longitude);
+        echo $this->data_exchange_model->set_my_location(strtolower($email), md5($password), 
+                                                         $latitude, $longitude);
         
     }
     
-    public function get_user_coordinates($email, $password)
+    public function get_contacts_locations($email, $password)
     {
-        $data = $this->data_exchange_model->get_user_coordinates(strtolower($email), md5($password));
+        $data = $this->data_exchange_model->get_contacts_locations(strtolower($email), md5($password));
     
         echo json_encode($data);
     }
