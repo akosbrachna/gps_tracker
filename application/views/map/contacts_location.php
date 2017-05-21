@@ -140,12 +140,12 @@ function create_marker(value)
     var div = document.createElement("div");
     div.innerHTML = "<div style='margin-right: 10px !important' "
                    +"id='infowindow'><font style='color: "+user.color+"'>"
-                   +user.name+'<br />Last seen:<br />'
+                   +user.name+'<br />'
                    +value.gps_update_time
 		   +"</font></div>";
     var pic = document.createElement("img");
     pic.src = "<?php echo base_url('web/pics/users'); ?>/"+user.email+".jpg";
-    pic.style.height = "60px";
+    pic.style.height = "50px";
     pic.onload = function(){
         div.appendChild(pic);
     }
@@ -208,30 +208,36 @@ function create_checkbox(value)
 
     var label= document.createElement("label");
     label.style.color = user.color;
-    label.style.width = "100%";
-    label.style.right = "2px";
+    label.style.width = "93%";
     label.style.float = "left";
-    label.style.cursor = "pointer";
     label.style.borderBottom = "2px solid "+user.color;
-    label.style.padding = "5px 2px 5px 2px";
+    label.style.padding = "10px 2px 5px 2px";
+    label.style.margin = "0px 0px 0px 5px";
     
     user.checkbox = document.createElement("input");
     user.checkbox.type = "checkbox";
     user.checkbox.checked = true;
+    user.checkbox.style.float = "left";
     label.appendChild(user.checkbox);
     
-    var name = document.createElement("span");
-    name.innerHTML = user.name+"<br />";
+    var name = document.createElement("div");
+    name.innerHTML = user.name;
+    name.style.float = "left";
     label.appendChild(name);
     
-    var phone = document.createElement("span");
-    phone.innerHTML = "phone: "+user.phone_number;
+    var phone = document.createElement("div");
+    phone.innerHTML = user.phone_number;
     phone.style.marginLeft = "20px";
+    phone.style.float = "left";
+    phone.style.clear = "both";
     label.appendChild(phone);
     
     var pic = document.createElement("img");
     pic.src = src="<?php echo base_url('web/pics/users'); ?>/"+user.email+".jpg";
-    pic.style.height = "60px";
+    pic.style.position = 'absolute';
+    pic.style.right = '0px;'
+    pic.style.height = "50px";
+    pic.style.marginLeft = "10px";
     pic.onload = function(){
         label.appendChild(pic);
     }
