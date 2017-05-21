@@ -49,7 +49,13 @@
 </div>
 
 <div id='phone_settings' class="phone_pages" style='padding:10px;'>
-    <a href="authorization/login/logout">Logout</a>
+    <p><a href="authorization/login/logout">Logout</a></p>
+    <br/>
+    <p>
+      <label for="frequency">Refresh frequency: </label>
+      <input type="number" id="frequency" value="3" min="1" max="10" onblur="frequency_changed(this);">minutes<br/>
+      Value should be between 1 and 10.
+    </p>
 </div>
 <div id='phone_contacts' class="phone_pages"></div>
 
@@ -57,7 +63,18 @@
 <div id="map_canvas_phone"></div>
 
 <script>
-
+    var frequency = 3;
+    function frequency_changed(input)
+    {
+        if (input.value > 10 || input.value <1)
+        {
+            alert("The frequency value should be between 1 and 10.");
+            return;
+        }
+        frequency = input.value;
+    }
+</script>
+<script>
 map = new google.maps.Map(document.getElementById("map_canvas_phone"), 
                     { center:new google.maps.LatLng(0, 0),
                       zoom: 2,
@@ -311,7 +328,7 @@ function refresh_map()
         success:function(data)
         {
             show_users_on_map($.parseJSON(data));
-            setTimeout(refresh_map, 1*20*1000);
+            setTimeout(refresh_map, frequency*60*1000);
         },
         error: function(data)
         {
