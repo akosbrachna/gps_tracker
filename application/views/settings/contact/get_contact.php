@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
 <style>
-.get_user{
+.get_contact{
     float: left;
     margin: auto;
     padding-right: 5px;
@@ -16,20 +16,20 @@
 input[type="submit"]{
     width: 80px !important;
 }
-.get_user table td{
+.get_contact table td{
     border: none !important;
 }
-.get_user table td input{
+.get_contact table td input{
     width: 90% !important;
 }
-.get_user table td select{
+.get_contact table td select{
     width: 90% !important;
 }
-.get_user table td:first-child{
+.get_contact table td:first-child{
     width: 50% !important;
     font-weight:normal;
 }
-.get_user table td:last-child{
+.get_contact table td:last-child{
     width: 50% !important;
     font-weight: bold;
 }
@@ -46,7 +46,7 @@ h5{
 }
 </style>
 
-<div class="get_user">
+<div class="get_contact">
     <h5>Personal info</h5>
 <table>
     <tbody>
@@ -85,7 +85,7 @@ h5{
         </a>
 <?php endif; ?>
 </div>
-<div class="get_user">
+<div class="get_contact">
     <h5 style="margin-bottom: 10px;">Contact settings</h5>
     <?php echo form_open('settings/contact/modify_contact_settings'); ?>
 <?php echo form_hidden('id', $records['id']); ?>
@@ -128,9 +128,9 @@ h5{
 <?php echo form_close(); ?>
 </div>
 
-<div class="get_user">
+<div class="get_contact">
     <h5 style="margin-bottom: 10px;">Remove <?php echo $records['first_name']; ?> from my contacts</h5>
-<?php echo form_open('settings/contact/remove_user'); ?>
+<?php echo form_open('settings/contact/remove_contact'); ?>
 <?php echo form_hidden('id', $records['id']); ?>
     <?php echo form_hidden('email', $records['email']); ?>
 <message></message>

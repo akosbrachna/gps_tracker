@@ -13,7 +13,7 @@
 echo draw_table($this->data['records']);
 ?>
 <script>
-    form_attr.form_ref     = 'settings/contact/get_user/';
+    form_attr.form_ref     = 'settings/contact/get_contact/';
     form_attr.dialog_title = 'Contact Form';
     form_attr.table_row = table_row;
 </script>
@@ -22,7 +22,7 @@ echo draw_table($this->data['records']);
 function get_user(id)
 {
     $('#spinning_wheel').fadeIn(200);
-    $.get('settings/contact/get_user/'+ id , function(data) 
+    $.get('settings/contact/get_contact/'+ id , function(data) 
     {
         $('#spinning_wheel').fadeOut(200);
         $('#main_form').html(data);

@@ -7,7 +7,7 @@
     padding-right: 5px;
     width: 70%;
     border: solid 2px rgb(100,100,255);
-    padding: 15px;
+    padding: 10px 15px 5px 15px;
     margin-bottom:5px;
 }
 .ui-dialog{
@@ -35,7 +35,7 @@ input[type="submit"]{
 }
 .photo{
     float: left;
-    height: 150px;
+    height: 100px;
     width: 28%;
     margin: auto;
     margin-left: 5px;
@@ -46,7 +46,7 @@ h5{
 }
 </style>
 
-<div class="get_request">
+<div class="get_request" style="padding-bottom: 20px !important;">
     <h5>Request received from</h5>
     <table>
         <tbody>
@@ -75,9 +75,7 @@ h5{
 <?php endif; ?>
 </div>
 <div class="get_request">
-    <h5 style="margin-bottom: 10px;">
-        <?php echo $records['name']; ?> would like to follow you.<br/>
-        Accept <?php echo $records['name']; ?>'s request</h5>
+    <h5 style="margin-bottom: 10px;">Accept request</h5>
     <?php echo form_open('settings/request/accept_request'); ?>
         <?php echo form_hidden('id', $records['id']); ?>
         <?php echo form_hidden('email', $records['email']); ?>
@@ -97,7 +95,7 @@ h5{
 </div>
 
 <div class="get_request">
-    <h5 style="margin-bottom: 10px;">Cancel <?php echo $records['name']; ?>'s request</h5>
+    <h5 style="margin-bottom: 10px;">Cancel request</h5>
 <?php echo form_open('settings/request/cancel_request'); ?>
 <?php echo form_hidden('id', $records['id']); ?>
 <?php echo form_hidden('email', $records['email']); ?>

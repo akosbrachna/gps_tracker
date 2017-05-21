@@ -6,51 +6,52 @@
     <meta charset="utf-8">
     <script src="<?php echo base_url('web/js/libs/jsencrypt.min.js');?>"></script>
     <title>GPS Tracker</title>
-    <style>
-    body{
-        background-color: rgb(245,245,245);
-        background-image: url("<?php echo base_url('web/pics/world_map.jpg'); ?>");
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-    }
-    #login_start_page{
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        margin-top: -220px;
-        margin-left: -160px;
-        color: rgb(0,0,205);
-        font-weight: bold;
-        padding: 10px 30px 40px 50px;
-        border: 2px rgb(200,200,255) solid;
-        background-color: rgb(255,255,255);
-    }
-    #login_start_page input[type="checkbox"]{
-        -ms-transform: scale(1.5); /* IE */
-        -moz-transform: scale(1.5); /* FF */
-        -webkit-transform: scale(1.5); /* Safari and Chrome */
-        -o-transform: scale(1.5); /* Opera */
-        padding: 10px;
-        background-color: black !important;
-    }
-    #login_start_page a{
-        margin-left: 40px;
-    }
-    #msie_no_support{
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        margin-top: -180px;
-        margin-left: -380px;
-        display: none;
-        font-size: 20px;
-        color: red;
-    }
+<style>
+#login_start_page{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -220px;
+    margin-left: -160px;
+    color: rgb(0,0,205);
+    font-weight: bold;
+    padding: 10px 30px 40px 50px;
+    border: 2px rgb(200,200,255) solid;
+    background-color: rgb(255,255,255);
+}
+#login_start_page input[type="checkbox"]{
+    -ms-transform: scale(1.5); /* IE */
+    -moz-transform: scale(1.5); /* FF */
+    -webkit-transform: scale(1.5); /* Safari and Chrome */
+    -o-transform: scale(1.5); /* Opera */
+    padding: 10px;
+    background-color: black !important;
+}
+#login_start_page a{
+    margin-left: 40px;
+}
+#msie_no_support{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -180px;
+    margin-left: -380px;
+    display: none;
+    font-size: 20px;
+    color: red;
+}
+#main_pic{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
 </style>
 </head>
 <body>
+    <img id="main_pic" src="<?php echo base_url('web/pics/world_map.jpg'); ?>" />
 <div id="login_start_page">
     <h2 style="margin-left: -20px;">Welcome to GPS tracker</h2>
 <h3>Login  <a href="<?php echo base_url('signup') ?>">Register</a></h3>

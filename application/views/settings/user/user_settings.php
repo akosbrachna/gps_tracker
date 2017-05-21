@@ -7,76 +7,40 @@
     }
 ?>
 <style>
-#user_settings{
+.account_settings{
     float: left;
     width: 70%;
     background: rgb(245,245,245) !important;
-    border: none !important;
+    border: solid 2px rgb(100,100,255);
+    padding: 15px 15px 0px 25px;
+    margin-bottom:5px;
 }
-#user_settings input[type="text"]{
+.account_settings input[type="text"]{
     width: 65% !important;
 }
-#user_settings table td{
+.account_settings table td{
     border: none !important;
     padding-right: 15px !important;
 }
-#user_settings table td:first-child{
-    width: 50% !important;
+.account_settings table td:first-child{
+    width: 150px !important;
 }
-#user_settings table td:last-child{
-    width: 50% !important;
+.account_settings table td:last-child{
+    /*width: 60% !important;*/
 }
-#user_image{
+.account_picture{
     position: absolute;
     top: 0px;
-    right: 10px;
+    right: 0px;
+    padding: 2px;
     margin-top: 10px !important;
     width: 30%;
     margin-bottom: 15px !important;
     z-index: 10;
 }
-#geocode{
-    text-decoration: underline;
-}
-#resize_map_user{
-    position: absolute !important;
-    bottom: 0px;
-    padding-left: 5px;
-    padding-right: 5px;
-    right: 10px;
-    z-index: 10001;
-    color: red;
-    border: 1px solid rgb(200,200,255);
-    background: rgb(245,245,155);
-    text-decoration: underline;
-    font-weight: bold !important;
-}
-.coords{
-    display: none;
-}
-#map_canvas_user div{
-    margin: 0 !important;
-}
-#map_canvas_user .gm-style img{
-    max-width: none !important;
-}
-#map_canvas_user .gm-style>div>div>div>div>div>img{
-    top: -336px !important;
-    left: -2px !important;
-}
-#map_canvas_user {
-    position: absolute !important;
-    margin-top: 15px !important;
-    bottom: 10px;
-    right: 10px;
-    width: 30%;
-    height: 50%;
-    border: 2px solid rgb(200,200,255);
-    z-index: 100;
-}
 </style>
 
-<div id="user_settings">
+<div class="account_settings">
 <?php echo form_open_multipart(); ?>
     <table>
         <tbody>
@@ -98,13 +62,13 @@
         <tr>
             <td>Password:</td>
             <td><?php echo form_input('password', $this->input->post('password')); ?>
-                <br />If the password is empty it won't be changed.
+                <br />If the password is left empty it won't be changed.
             </td>
         </tr>
         <tr>
             <td>Address:</td>
             <td><?php echo form_textarea('address', check_input('address', $records),
-                                         'id="site_address" style="width:430px !important; height: 70px;"'); ?>
+                                         'id="site_address" style="height: 50px;"'); ?>
             
             </td>
         </tr>
@@ -121,45 +85,24 @@
     </table>
 <form_message></form_message>
 <message></message>
-<p><?php echo form_submit('submit', 'Save'); ?></p>
+<p style="margin-top: 10px;"><?php echo form_submit('submit', 'Change'); ?></p>
+<?php echo form_close(); ?>
+</div>
+
+<div class="account_settings">
+    <h5 style="margin-bottom: 10px; font-weight: bold; color: black;">Delete my account</h5>
+<?php echo form_open('settings/user/delete_account'); ?>
+<message></message>
+<p><?php echo form_submit('submit', 'Delete'); ?></p>
 <?php echo form_close(); ?>
 </div>
 
 <?php if(file_exists($photo)): ?>
-        <a id="resize_user_image" 
-           title="Click to enlarge!"
-           href="<?php echo base_url(str_replace('\\', '/', $photo)); ?>" target="_blank">
-           <img id="user_image" src="<?php echo base_url(str_replace('\\', '/', $photo)); ?>" />
+        <a href="<?php echo base_url(str_replace('\\', '/', $photo)); ?>" target="_blank">
+           <img class="account_picture" src="<?php echo base_url(str_replace('\\', '/', $photo)); ?>" />
         </a>
 <?php else: ?>
-        <a id="resize_user_image" 
-           title="Click to enlarge!"
-           href="<?php echo base_url('web/pics/users/default.jpg'); ?>" target="_blank">
-           <img id="user_image" src="<?php echo base_url('web/pics/users/default.jpg'); ?>" />
+        <a href="<?php echo base_url('web/pics/users/default.jpg'); ?>" target="_blank">
+           <img class="account_picture" src="<?php echo base_url('web/pics/users/default.jpg'); ?>" />
         </a>
 <?php endif; ?>
-
-<script>
-$('#resize_user_image').tooltip({position: {my: "top-40", at: "right"}});
-var j = 0;
-$('#resize_user_image').click(function(e){
-    e.preventDefault();
-    $('#user_image').css({'z-index': 102});
-    if (j == 0)
-    {
-        j = 1;
-        $("#user_image").animate({
-            width : '95%'
-        }, 200);
-        $( "#resize_user_image" ).tooltip( "option", "content", "Click to reduce!" );
-    }
-    else
-    {
-        j = 0;
-        $("#user_image").animate({
-            width : '30%'
-        }, 200);
-        $( "#resize_user_image" ).tooltip( "option", "content", "Click to enlarge!" );
-    }
-});
-</script>

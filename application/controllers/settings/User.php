@@ -6,7 +6,6 @@ class User extends Base_Controller
     {
         parent::__construct();
         $this->load->model('settings/user_model');
-        $this->load->helper('my_table_helper');
         $this->data['photo'] = 'web\pics\users\\'.$this->session->userdata('email').'.jpg';
     }
     
@@ -63,5 +62,19 @@ class User extends Base_Controller
         }
         $this->data['records'] = $this->user_model->get_user($this->session->userdata('id'));
         $this->load->view('settings/user/user_settings', $this->data);
+    }
+    
+    public function delete_account()
+    {
+        if ($this->user_model->delete_account())
+        {
+            $this->session->destroy();
+            redirect();
+        }
+        else
+        {
+            $this->data['message'] .= 'Something went wrong. Please refresh your browser and try again.';
+            $this->send_messages();
+        }
     }
 }

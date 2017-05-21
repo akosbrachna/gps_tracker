@@ -40,4 +40,27 @@ class User_model extends CI_Model
                          ->result_array();
         return $data[0];
     }
+    
+    public function delete_account()
+    {
+        $user = $this->session->userdata('email');
+        
+        $this->db->trans_start();
+        
+        $this->db->where('owner', $user)
+                 ->delete('category');
+        
+        $this->db->where('owner', $user)
+                 ->or_where('member', $user)
+                 ->delete('contacts');
+        
+        $this->db->where('request_to', $user)
+                 ->or_where('request_from')
+                 ->delete('requests');
+        
+        $this->db->where('email', $user)
+                 ->delete('user');
+        
+        return $this->db->trans_complete();
+    }
 }

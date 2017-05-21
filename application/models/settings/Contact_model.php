@@ -10,7 +10,7 @@ class Contact_model extends CI_Model
             $this->db = $this->load->database('default', TRUE);
     }
     
-    public function get_users()
+    public function get_contacts()
     {
         if ($this->input->post('status', true))
         {
@@ -64,7 +64,7 @@ class Contact_model extends CI_Model
         return $users;
     }
     
-    public function get_user($id)
+    public function get_contact($id)
     {
         $user = $this->db->from('user')
                          ->join('contacts', 'contacts.member = user.email')
@@ -85,7 +85,7 @@ class Contact_model extends CI_Model
         return $this->db->where('id', $this->input->post('id'))->update('contacts', $contact);
     }
     
-    public function remove_user()
+    public function remove_contact()
     {
         $me = $this->session->userdata('email');
         $contact = $this->input->post('email', true);

@@ -6,13 +6,13 @@
     <meta charset="utf-8">
     <title>GPS Tracker</title>
 <style>
-body{
-    background: rgb(235,235,235);
-    background-image: url("<?php echo base_url('web/pics/world_map.jpg'); ?>");
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+#main_pic{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
 #register_user
 {
@@ -56,7 +56,9 @@ table
     height: 200px;
 }
 </style>
-
+</head>
+<body>
+<img id="main_pic" src="<?php echo base_url('web/pics/world_map.jpg'); ?>" />
 <div id="register_user">
 <h2>Registration on the GPS tracker website is free</h2>
 <?php echo form_open_multipart(); ?>

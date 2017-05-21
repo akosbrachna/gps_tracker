@@ -11,25 +11,25 @@ class Contact extends Base_Controller
         $this->load->helper('my_table_helper');
     }
         
-    public function users()
+    public function contacts()
     {
 
-        $this->data['records'] = $this->contact_model->get_users();
+        $this->data['records'] = $this->contact_model->get_contacts();
         if (count($this->data['records']) == 0)
         {
             $this->data['message'] = 'No records.';
         }
         $this->send_messages();
 
-        $this->load->view('settings/contact/users', $this->data);
+        $this->load->view('settings/contact/contacts', $this->data);
     }
     
-    public function get_user($id)
+    public function get_contact($id)
     {
         $this->data['categories']  = $this->category_model->get_categories();
-        $this->data['records'] = $this->contact_model->get_user($id);
+        $this->data['records'] = $this->contact_model->get_contact($id);
         $this->data['photo']   = "web\pics\users\\".$this->data['records']['email'].".jpg";
-        $this->load->view('settings/contact/get_user', $this->data);
+        $this->load->view('settings/contact/get_contact', $this->data);
     }
     
     public function modify_contact_settings()
@@ -56,9 +56,9 @@ class Contact extends Base_Controller
         $this->send_messages();
     }
     
-    public function remove_user()
+    public function remove_contact()
     {
-        if ($this->contact_model->remove_user())
+        if ($this->contact_model->remove_contact())
         {
             $this->data['message'] = 'Contact has been successfully removed. ';
         }

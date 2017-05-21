@@ -10,14 +10,14 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('web/css/libs/gumby/css/gumby.css');?>" media="screen" />
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('web/css/style.css');?>" media="screen" />
     <style>
-     body{
-        background: rgb(235,235,235);
-        background-image: url("<?php echo base_url('web/pics/world_map.jpg'); ?>");
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-    }
+#main_pic{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
     #forgot_password
     {
         position: fixed;
@@ -34,7 +34,7 @@
     </style>
 </head>
 <body>
-
+<img id="main_pic" src="<?php echo base_url('web/pics/world_map.jpg'); ?>" />
 <div id="forgot_password">
     
 <h3>Password reset</h3>
