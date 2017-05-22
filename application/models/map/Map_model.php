@@ -11,6 +11,7 @@ class Map_model extends CI_Model
     
     public function show_contacts_on_map()
     {
+        $owner = $this->session->userdata('email');
         $select = 'user.id, '
                 . 'first_name, '
                 . 'last_name, '
@@ -18,23 +19,43 @@ class Map_model extends CI_Model
                 . 'phone_number, '
                 . 'gps_update_time, '
                 . 'latitude, '
-                . 'longitude ';
-        $owner = $this->session->userdata('email');
+                . 'longitude';
         $users = $this->db->select($select)
                           ->from('user')
-                          ->where('longitude IS NOT NULL')
-                          ->join('contacts', 'contacts.member = user.email')
-                          ->where('contacts.owner', $owner)
-                          ->where('contacts.status', 'visible')
-                          ->join("(SELECT name, status FROM category WHERE owner='$owner') as cat", 'cat.name = contacts.category')
-                          ->where('cat.status', 'visible')
-                          ->order_by('first_name')
+                          ->join('contacts','contacts.owner = user.email')
+                          ->join('category', 'category.owner = contacts.owner')
+                          ->where('category.permission', 'enabled')
+                          ->where('contacts.permission','enabled')
+                          ->where('member', $owner)
+                          ->where('longitude IS NOT NULL')          
+                          ->order_by('email')
                           ->get()
                           ->result_array();
-        $owner = $this->db->where('email', $this->session->userdata('email'))
-                          ->get('user')
-                          ->result_array();
-        $users[] = $owner[0];
-        return $users;
+        $categories = $this->db->select('member')
+                               ->from('contacts')
+                               ->join('category', 'category.name = contacts.category')
+                               ->where('contacts.owner', $owner)
+                               ->where('category.owner', $owner)
+                               ->where('contacts.status', 'visible')
+                               ->where('category.status', 'visible')
+                               ->order_by('member')
+                               ->get()
+                               ->result_array();
+        $contacts = array();
+        for ($i = 0; $i < count($users); $i++)
+        {
+            for ($j = 0; $j < count($categories); $j++)
+            {
+                if ($users[$i]['email'] == $categories[$j]['member'])
+                {
+                    $contacts[] = $users[$i];
+                }
+            }
+        }
+        $me = $this->db->where('email', $this->session->userdata('email'))
+                       ->get('user')
+                       ->result_array();
+        $contacts[] = $me[0];
+        return $contacts;
     }
 }
