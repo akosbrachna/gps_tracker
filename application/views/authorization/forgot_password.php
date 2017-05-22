@@ -10,24 +10,24 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('web/css/libs/gumby/css/gumby.css');?>" media="screen" />
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('web/css/style.css');?>" media="screen" />
     <style>
-#main_pic{
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-}
+    #main_pic{
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
     #forgot_password
     {
         position: fixed;
         top: 50%;
         left: 50%;
-        margin-top: -170px;
-        margin-left: -290px;
+        margin-top: -130px;
+        margin-left: -170px;
         color: rgb(0,0,205);
         font-weight: bold;
-        padding: 10px 30px 40px 50px;
+        padding: 20px 30px 20px 40px;
         border: 2px rgb(200,200,255) solid;
         background-color: rgb(255,255,255);
     }
@@ -37,12 +37,8 @@
 <img id="main_pic" src="<?php echo base_url('web/pics/world_map.jpg'); ?>" />
 <div id="forgot_password">
     
-<h3>Password reset</h3>
-
-<h5>Please type in your email address and check your mailbox.</h5>
-<h5>You might need to check your spam folder too.</h5>
-
-<br />
+<h4>Password reset</h4>
+<br/>
 <?php echo form_open(); ?>
 
 <p>Email: <?php echo form_input('email', $this->input->post('email')); ?></p>
@@ -53,6 +49,9 @@
 
 <?php echo validation_errors(); ?>
 <?php if (isset($message)) echo $message; ?>
+
+<p>Please check your mailbox.<br/>
+Email may be in spam folder.</p>
 
 </div>
 </body>

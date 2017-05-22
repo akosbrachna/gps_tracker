@@ -19,8 +19,8 @@
     position: fixed;
     top: 50%;
     left: 50%;
-    margin-top: -220px;
-    margin-left: -270px;
+    margin-top: -245px;
+    margin-left: -180px;
     background: rgb(255,255,250) !important;
     padding: 20px;
     padding-top: 5px ;
@@ -38,10 +38,10 @@ table
     border-spacing: 0 !important;
 }
 #register_user table td:first-child{
-    width: 150px;
+    width: 130px;
 }
 #register_user table td:last-child{
-    width: 300px;
+    width: 170px;
 }
 #register_user input{
     width: 100%;
@@ -52,15 +52,27 @@ table
 #register_user a{
     margin-left: 40px;
 }
-.reg_photo{
-    height: 200px;
+.login_footer{
+    background: rgb(245,245,245);
+    border: 2px rgb(200,200,255) solid;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 30px;
+}
+.login_footer a{
+    position: absolute;
+    left: 50%;
+    margin-left: -80px;
+    font-weight: bold;
 }
 </style>
 </head>
 <body>
 <img id="main_pic" src="<?php echo base_url('web/pics/world_map.jpg'); ?>" />
 <div id="register_user">
-<h2>Registration on the GPS tracker website is free</h2>
+<h2>Registration</h2>
 <?php echo form_open_multipart(); ?>
 <br />
 <table border="0" cellpadding="4" cellspacing="0">
@@ -92,11 +104,9 @@ table
         <td><?php echo form_input('phone_number', $this->input->post('phone_number')); ?></td>
     </tr>
     <tr>
-        <td>Upload profile photo:</td>
+        <td>Profile photo:</td>
         <td><input type="file" name="userfile" id="userfile" size="100" />
-            File size should be less than 300 kilobytes.<br />
-<!--            Default photo:<br />
-            <img class='reg_photo' src="<?php echo base_url('web/pics/users/default.jpg'); ?>"/>-->
+            File size less than 300 kilobytes.<br />
         </td>
       </tr>
       </tbody>
@@ -105,9 +115,12 @@ table
       if (isset($message)) echo $message;
 ?>
 <form_message></form_message>
-<p><?php echo form_submit('submit', 'Save'); ?></p>
+<p><?php echo form_submit('submit', 'Register'); ?></p>
 <?php echo form_close(); ?>
 <message></message>
+</div>
+<div class="login_footer">
+    <a href="https://github.com/akosbrachna/gps_tracker/" target="_blank">About GPS Tracker</a>
 </div>
 </body>
 </html>
