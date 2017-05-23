@@ -39,7 +39,7 @@ class Registration extends Base_Controller
                     else
                     {
                         $this->load->library('my_photo');
-                        $this->my_photo->save_my_photo($this->input->post('email', true));
+                        $this->my_photo->save_my_photo($this->input->post('email'));
                         if ($this->send_email())
                         {
                             $this->data['message'].= 'Account has been successfully created.<br/>'

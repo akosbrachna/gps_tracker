@@ -2,7 +2,6 @@
 
 class my_photo
 {
-    private $file_path;
     private $folder;
     
     function __construct() {
@@ -25,11 +24,9 @@ class my_photo
         }
         else
         {
-            $this->file_path = realpath(FCPATH.$this->folder.$email.'.jpg');
-            
             $upload_data = $CI->upload->data();
             $file = $upload_data['full_path'];
-            rename($file, $this->file_path);
+            rename($file, realpath(FCPATH.$this->folder).'/'.$email.'.jpg');
             return true;
         }
     }
@@ -37,7 +34,7 @@ class my_photo
     public function get_photo_absolute_path($email)
     {
         $path = realpath(FCPATH.$this->folder.$email.'.jpg');
-        if (file_exists($path))
+        if ($path)
         {
             return $path;
         }
@@ -50,7 +47,7 @@ class my_photo
     public function get_photo_relative_path($email)
     {
         $path = realpath(FCPATH.$this->folder.$email.'.jpg');
-        if (file_exists($path))
+        if ($path)
         {
             return $this->folder.$email.'.jpg';
         }
