@@ -110,7 +110,8 @@ $('.side_menu_item').click(function (event)
     var url = $(this).attr('href');
     $('#spinning_wheel').fadeIn(200);
     event.preventDefault();
-    $.get(url, function(data) {
+    $.get(url, function(data) 
+    {
         if ($(data).filter('#login_start_page').length)
         {
             location.reload(window.location.origin+'/gps_tracker');

@@ -22,10 +22,7 @@ class Request extends Base_Controller
                 switch ($this->request_model->send_request()) 
                 {
                     case true:
-                        if ($this->send_email())
-                        {
-                            $this->data['message'] .= 'Request has been sent.';
-                        }
+                        $this->send_email();
                         break;
                     case false:
                         $this->data['message'] = 'Something went wrong. Please try again';
@@ -53,28 +50,24 @@ class Request extends Base_Controller
     {
         $this->load->library('email');
 
-        $message = 'Dear '.$this->input->post('first_name').'!<br />'
-                  .'You are invited to join the GPS tracking group by '.$this->session->userdata('email')
-                  .' <br />You can register on the website here: '
-                . '<a href="'.base_url('signup').'" >GPS tracker registration</a>';
+        $message = 'Dear '.$this->input->post('first_name').'!<br /><br/>'
+                  .$this->session->userdata('email').' has sent you a friend request from '
+                  .'<a href="'.base_url().'" >GPS tracker</a>.';
         $this->email->to($this->input->post('email'));
         $this->email->from('gps_tracker@gmail.com', 'GPS Tracker support');
-        $this->email->subject('Invitation');
+        $this->email->subject('Friend request from GPS tracker from '.$this->session->userdata('email'));
         $this->email->message($message);
 
         if ($this->email->send())
         {
-            $this->data['message'].= 'Email has been sent to the user.';
+            $this->data['message'].= 'Email has been sent.';
             return true;
         }
         else
         {
-            $this->data['message'].= 
-                    //$this->email->print_debugger().
-                    '<br />'
-                . 'It seems that email has not been sent. <br />'
-                . 'Please send an email to the user including the '
-                . 'user\'s password and the website address: '.base_url();
+            $this->data['message'].= 'Email has not been sent. <br />'
+                                    .'Please send an email to your friend including '
+                                    .'the website address: '.base_url();
             return false;
         }
     }
@@ -83,15 +76,14 @@ class Request extends Base_Controller
     {
         $this->data['records'] = $this->request_model->get_request($id);
         $this->data['categories'] = $this->request_model->get_categories();
-        
+        $this->load->library('my_photo');
+        $this->data['photo'] = $this->my_photo->get_photo_relative_path($this->data['records']['email']);
         if ($this->data['records']['direction'] == 'incoming')
         {
-            $this->data['photo'] = "web\pics\users\\".$this->data['records']['email'].".jpg";
             $this->load->view('settings/request/incoming_request', $this->data);
         }
         else
         {
-            $this->data['photo'] = "web\pics\users\\".$this->data['records']['email'].".jpg";
             $this->load->view('settings/request/outgoing_request', $this->data);
         }
     }

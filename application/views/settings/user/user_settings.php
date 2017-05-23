@@ -40,7 +40,7 @@
 }
 </style>
 
-<div class="account_settings">
+<div id="change_account_settings" class="account_settings">
 <?php echo form_open_multipart(); ?>
     <table>
         <tbody>
@@ -78,8 +78,10 @@
             </td>
         </tr>
         <tr>
-            <td>Upload photo:</td>
-            <td><input type="file" name="userfile" id="userfile" size="100" /></td>
+            <td>Profile photo:</td>
+            <td><input type="file" name="userfile" id="userfile" size="100" /><br/>
+                File size should be less than 300KB
+            </td>
         </tr>
         </tbody>
     </table>
@@ -89,7 +91,7 @@
 <?php echo form_close(); ?>
 </div>
 
-<div class="account_settings">
+<div id="delete_my_account" class="account_settings">
     <h5 style="margin-bottom: 10px; font-weight: bold; color: black;">Delete my account</h5>
 <?php echo form_open('settings/user/delete_account'); ?>
 <message></message>

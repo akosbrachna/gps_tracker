@@ -38,6 +38,24 @@ $('#nav li').click(function(){
                         $(this).css({background:'rgb(253,253,253)'});
                     });
 });
+</script>
+<script>
+function delete_account_form()
+{
+    $("#delete_my_account").submit(
+        function()
+        {
+            $.get($(this).attr("action"), function(data) 
+            {
+                if ($(data).filter('#login_start_page').length)
+                {
+                    location.reload(window.location.origin+'/gps_tracker');
+                }
+            });
+        }
+    )
+};
+
 $(".user_settings").click(function(e)
  {
     var ref = $(this).attr('id');
@@ -57,7 +75,8 @@ $(".user_settings").click(function(e)
                                 width:'900px',
                                 title: 'User Form'
                         });
-        submit_form('#main_form');
+        submit_form('#change_account_settings');
+        delete_account_form();
     });
 });
 </script>

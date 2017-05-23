@@ -7,9 +7,20 @@
     <meta name="viewport" content="width=device-width, user-scalable = no">
     <meta charset="utf-8">
     <title>Reset password</title>
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('web/css/libs/gumby/css/gumby.css');?>" media="screen" />
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('web/css/style.css');?>" media="screen" />
     <style>
+    #forgot_password
+    {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        margin-top: -130px;
+        margin-left: -160px;
+        color: rgb(0,0,205);
+        font-weight: bold;
+        padding: 20px 30px 20px 40px;
+        border: 2px rgb(200,200,255) solid;
+        background-color: rgb(255,255,255);
+    }
     #main_pic{
         position: fixed;
         top: 0px;
@@ -18,27 +29,13 @@
         height: 100%;
         z-index: -1;
     }
-    #forgot_password
-    {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        margin-top: -130px;
-        margin-left: -170px;
-        color: rgb(0,0,205);
-        font-weight: bold;
-        padding: 20px 30px 20px 40px;
-        border: 2px rgb(200,200,255) solid;
-        background-color: rgb(255,255,255);
-    }
     </style>
 </head>
 <body>
 <img id="main_pic" src="<?php echo base_url('web/pics/world_map.jpg'); ?>" />
 <div id="forgot_password">
     
-<h4>Password reset</h4>
-<br/>
+<h2>Password reset</h2>
 <?php echo form_open(); ?>
 
 <p>Email: <?php echo form_input('email', $this->input->post('email')); ?></p>

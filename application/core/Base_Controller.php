@@ -8,6 +8,7 @@ class Base_Controller extends CI_Controller
     public $data = array();
     public $exceptions = array(
                 'authorization/reset_account/forgot_password',
+                'authorization/reset_account/reset_password',
                 'authorization/registration/register',
                 'authorization/registration/confirm',
                 'android/data_exchange/get_contacts_locations',

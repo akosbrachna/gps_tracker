@@ -16,28 +16,6 @@ echo draw_table($this->data['records']);
     form_attr.form_ref     = 'settings/contact/get_contact/';
     form_attr.dialog_title = 'Contact Form';
     form_attr.table_row = table_row;
-</script>
 
-<script>
-function get_user(id)
-{
-    $('#spinning_wheel').fadeIn(200);
-    $.get('settings/contact/get_contact/'+ id , function(data) 
-    {
-        $('#spinning_wheel').fadeOut(200);
-        $('#main_form').html(data);
-        $('#main_form').dialog({autoOpen: true,
-                                draggable: true,
-                                position: { my: "top center",
-                                            at: "top center",
-                                            of: "body"},
-                                resizable: true,
-                                modal: true,
-                                width: '700px',
-                                title: 'User Form'
-                               });
-        submit_form('#main_form');
-    });
-}
     table_row();
 </script>

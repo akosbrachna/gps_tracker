@@ -6,29 +6,7 @@ class User extends Base_Controller
     {
         parent::__construct();
         $this->load->model('settings/user_model');
-        $this->data['photo'] = 'web\pics\users\\'.$this->session->userdata('email').'.jpg';
-    }
-    
-    private function save_photo()
-    {
-        $config['upload_path']   = FCPATH.'web\pics\users\\';
-        $config['allowed_types'] = 'jpg|jpeg|png';
-        $config['max_size']      = '300';
-        $this->load->library('upload', $config);
-        if ($this->upload->do_upload() == false)
-        {
-            $this->data['message'] .= 'Ignore the error if you did not want to upload photo.'
-                                    . $this->upload->display_errors();
-            return false;
-        }
-        else
-        {
-            $upload_data = $this->upload->data();
-            $file = $upload_data['full_path'];
-            rename($file, FCPATH.$this->data['photo']);
-            $this->data['message'] .= 'Photo has been successfully uploaded. ';
-            return true;
-        }
+        $this->load->library('my_photo');
     }
     
     public function change_user_settings()
@@ -48,7 +26,7 @@ class User extends Base_Controller
                 if ($this->user_model->save_user_settings_form())
                 {
                     $this->data['message'] .= 'Form has been succesfully saved. ';
-                    $this->save_photo();
+                    $this->my_photo->save_my_photo($this->session->userdata('email'));
                 }
                 else
                 {
@@ -60,6 +38,7 @@ class User extends Base_Controller
             $this->send_messages();
             return;
         }
+        $this->data['photo'] = $this->my_photo->get_photo_relative_path($this->session->userdata('email'));
         $this->data['records'] = $this->user_model->get_user($this->session->userdata('id'));
         $this->load->view('settings/user/user_settings', $this->data);
     }
@@ -68,12 +47,18 @@ class User extends Base_Controller
     {
         if ($this->user_model->delete_account())
         {
-            $this->session->destroy();
+            $photo = $this->my_photo->get_photo_absolute_path($this->session->userdata('email'));
+            if (file_exists($photo))
+            {
+                unlink($photo);
+            }
+            $this->session->sess_destroy();
             redirect();
         }
         else
         {
             $this->data['message'] .= 'Something went wrong. Please refresh your browser and try again.';
+            echo $this->data['message'];
             $this->send_messages();
         }
     }

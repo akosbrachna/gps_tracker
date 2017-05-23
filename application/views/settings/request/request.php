@@ -67,28 +67,6 @@ echo draw_table($this->data['outgoing_requests']);
     form_attr.form_ref     = 'settings/request/get_request/';
     form_attr.dialog_title = 'Request Form';
     form_attr.table_row = table_row;
-</script>
 
-<script>
-function get_request(id)
-{
-    $('#spinning_wheel').fadeIn(200);
-    $.get('settings/request/get_request/'+ id , function(data) 
-    {
-        $('#spinning_wheel').fadeOut(200);
-        $('#main_form').html(data);
-        $('#main_form').dialog({autoOpen: true,
-                                draggable: true,
-                                position: { my: "top center",
-                                            at: "top center",
-                                            of: "body"},
-                                resizable: true,
-                                modal: true,
-                                width: '700px',
-                                title: 'Request Form'
-                               });
-        submit_form('#main_form');
-    });
-}
     table_row();
 </script>

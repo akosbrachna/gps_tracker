@@ -1,6 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 $route['default_controller']     = 'authorization/login/sign_in';
+$route['logout']                 = 'authorization/login/logout';
 $route['password_reset']         = 'authorization/reset_account/forgot_password';
 $route['change_password/(:any)'] = 'authorization/reset_account/reset_password/$1';
 $route['register']               = 'users/user/register';

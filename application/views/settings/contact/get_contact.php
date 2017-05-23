@@ -89,6 +89,7 @@ h5{
     <h5 style="margin-bottom: 10px;">Contact settings</h5>
     <?php echo form_open('settings/contact/modify_contact_settings'); ?>
 <?php echo form_hidden('id', $records['id']); ?>
+    <?php echo form_hidden('email', $records['email']); ?>
     <table>
     <tbody>
     <tr>

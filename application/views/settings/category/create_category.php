@@ -50,28 +50,6 @@ echo draw_table($this->data['records']);
     form_attr.form_ref     = 'settings/category/get_category/';
     form_attr.dialog_title = 'Category Form';
     form_attr.table_row = table_row;
-</script>
 
-<script>
-function get_user(id)
-{
-    $('#spinning_wheel').fadeIn(200);
-    $.get('settings/category/get_category/'+ id , function(data) 
-    {
-        $('#spinning_wheel').fadeOut(200);
-        $('#main_form').html(data);
-        $('#main_form').dialog({autoOpen: true,
-                                draggable: true,
-                                position: { my: "top center",
-                                            at: "top center",
-                                            of: "body"},
-                                resizable: true,
-                                modal: true,
-                                width: '700px',
-                                title: 'Category Form'
-                               });
-        submit_form('#main_form');
-    });
-}
     table_row();
 </script>

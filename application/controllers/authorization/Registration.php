@@ -38,7 +38,8 @@ class Registration extends Base_Controller
                     }
                     else
                     {
-                        $this->save_photo();
+                        $this->load->library('my_photo');
+                        $this->my_photo->save_my_photo($this->input->post('email', true));
                         if ($this->send_email())
                         {
                             $this->data['message'].= 'Account has been successfully created.<br/>'
@@ -55,7 +56,6 @@ class Registration extends Base_Controller
                                                     . 'Check if your email address is correct.';
                         }
                         $this->send_messages();
-                        //redirect('main');
                     }
                 }
             }
@@ -86,30 +86,7 @@ class Registration extends Base_Controller
 
         return $this->email->send();
     }
-    
-    private function save_photo()
-    {
-        $this->data['photo'] = 'web\pics\users\\'.$this->input->post('email', true).'.jpg';
-        $config['upload_path']   = FCPATH.'web\pics\users\\';
-        $config['allowed_types'] = 'jpg|jpeg|png|bmp|gif';
-        $config['max_size']      = '300';
-        $this->load->library('upload', $config);
-        if ($this->upload->do_upload() == false)
-        {
-            $this->data['message'] .= 'Ignore the error if you did not want to upload photo.'
-                                    . $this->upload->display_errors();
-            return false;
-        }
-        else
-        {
-            $upload_data = $this->upload->data();
-            $file = $upload_data['full_path'];
-            rename($file, FCPATH.$this->data['photo']);
-            $this->data['message'] .= 'Photo has been successfully uploaded. ';
-            return true;
-        }
-    }
-    
+        
     public function confirm($hash_key)
     {
         if ($this->registration_model->confirm($hash_key))

@@ -7,17 +7,15 @@
     <meta name="viewport" content="width=device-width, user-scalable = no">
     <meta charset="utf-8">
     <title>Reset password</title>
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('web/css/libs/gumby/css/gumby.css');?>" media="screen" />
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('web/css/style.css');?>" media="screen" />
-    <style>
-#main_pic{
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-}
+   <style>
+    #main_pic{
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
     #save_password{
         position: fixed;
         top: 50%;
@@ -26,7 +24,7 @@
         margin-left: -200px;
         color: rgb(0,0,205);
         font-weight: bold;
-        padding: 10px 30px 40px 50px;
+        padding: 10px 30px 40px 30px;
         border: 2px rgb(200,200,255) solid;
         background-color: rgb(255,255,255);
     }
@@ -34,7 +32,7 @@
         border: none !important;
     }
     #save_password table td:first-child{
-        width: 180px;
+        width: 130px;
     }
     </style>
 </head>

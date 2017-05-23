@@ -12,6 +12,7 @@ class Contact_model extends CI_Model
     
     public function get_contacts()
     {
+        $this->load->library('my_photo');
         if ($this->input->post('status', true))
         {
             $this->db->where('user.status', $this->input->post('status'));
@@ -41,13 +42,12 @@ class Contact_model extends CI_Model
             $users[$key]['Name']       = $value['first_name'].' '.$value['last_name'];
             $users[$key]['Email']      = $value['email'];
             $users[$key]['Category']   = $value['category'];
-            $users[$key]['Visibility']     = $value['status'];
+            $users[$key]['Visibility'] = $value['status'];
             $users[$key]['Permission'] = $value['permission'];
             $users[$key]['Last seen']  = $value['gps_update_time'];
-            if (file_exists(FCPATH.'web\pics\users\\'.$value['email'].'.jpg'))
+            if ($path = $this->my_photo->get_photo_relative_path($value['email']))
             {
-                $users[$key]['Photo'] = '<img src="web/pics/users/'
-                                        .$value['email'].'.jpg" style="height:60px;">';
+                $users[$key]['Photo'] = '<img src="'.$path.'" style="height:60px;">';
             }
             else
             {
@@ -69,6 +69,7 @@ class Contact_model extends CI_Model
         $user = $this->db->from('user')
                          ->join('contacts', 'contacts.member = user.email')
                          ->where('user.id', $id)
+                         ->where('owner', $this->session->userdata('email'))
                          ->get()
                          ->result_array();
         return $user[0];
@@ -82,7 +83,9 @@ class Contact_model extends CI_Model
             'permission' => $this->input->post('permission', true)
         );
 
-        return $this->db->where('id', $this->input->post('id'))->update('contacts', $contact);
+        return $this->db->where('member', $this->input->post('email'))
+                        ->where('owner', $this->session->userdata('email'))
+                        ->update('contacts', $contact);
     }
     
     public function remove_contact()
