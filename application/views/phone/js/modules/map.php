@@ -35,10 +35,24 @@
 .phone_pages{
     position: absolute;
     top: 60px;
-    left: 10px;
+    left: 0px;
+    margin: auto;
+    padding: 10px;
     width: 100%;
+    box-sizing: border-box;
     overflow: hidden;
     visibility: hidden;
+}
+.logout{
+    position: fixed; 
+    bottom: 20px; 
+    right: 30px;
+    font-size: 18px;
+}
+#phone_settings{
+    color: blue;
+    font-weight: bold;
+    font-size: 16px;
 }
 </style>
 
@@ -48,14 +62,18 @@
     <font class="phone_menu_item" value='phone_settings'>Settings</font>
 </div>
 
-<div id='phone_settings' class="phone_pages" style='padding:10px;'>
-    <p><a href="authorization/login/logout">Logout</a></p>
+<div id='phone_settings' class="phone_pages">
+    <p class="logout"><a href="authorization/login/logout">Logout</a></p>
     <br/>
     <p>
       <label for="frequency">Refresh frequency: </label>
       <input type="number" id="frequency" value="3" min="1" max="10" onblur="frequency_changed(this);">minutes<br/>
       Value should be between 1 and 10.
     </p>
+    <br/>
+    <hr>
+    <br/>
+    <p><a href="<?php echo base_url('web/android/gps_tracker.apk'); ?>" target="_blank">Download android application</a></p>
 </div>
 <div id='phone_contacts' class="phone_pages"></div>
 
@@ -236,7 +254,7 @@ function create_checkbox(value)
 
     var label= document.createElement("label");
     label.style.color = user.color;
-    label.style.width = "93%";
+    label.style.width = "100%";
     label.style.float = "left";
     label.style.borderBottom = "2px solid "+user.color;
     label.style.padding = "20px 2px 15px 2px";

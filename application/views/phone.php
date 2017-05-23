@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable = no">
-    <link rel="icon" href="<?php echo base_url('web/favicon.ico');?>">
+    <link rel="icon" href="<?php echo favicon_path;?>">
     <title>GPS Tracker</title>
     <script><?php $this->load->view('phone/js/libs/jquery-1.11.1.min.js');?></script>
     <script><?php $this->load->view('phone/js/libs/jquery.storageapi.min.js');?></script>
