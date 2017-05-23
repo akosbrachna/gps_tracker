@@ -100,8 +100,8 @@
 </div>
 
 <?php if(file_exists($photo)): ?>
-        <a href="<?php echo base_url(str_replace('\\', '/', $photo)); ?>" target="_blank">
-           <img class="account_picture" src="<?php echo base_url(str_replace('\\', '/', $photo)); ?>" />
+        <a href="<?php echo base_url($photo); ?>" target="_blank">
+           <img class="account_picture" src="<?php echo base_url($photo); ?>" />
         </a>
 <?php else: ?>
         <a href="<?php echo base_url('web/pics/users/default.jpg'); ?>" target="_blank">

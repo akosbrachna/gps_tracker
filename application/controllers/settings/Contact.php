@@ -27,10 +27,10 @@ class Contact extends Base_Controller
     public function get_contact($id)
     {
         $this->load->library('my_photo');
-        $this->data['photo'] = $this->my_photo->get_photo_relative_path($this->input->post('email', true));
         
         $this->data['categories']  = $this->category_model->get_categories();
-        $this->data['records'] = $this->contact_model->get_contact($id);
+        $this->data['records']     = $this->contact_model->get_contact($id);
+        $this->data['photo'] = $this->my_photo->get_photo_relative_path($this->data['records']['email']);
         $this->load->view('settings/contact/get_contact', $this->data);
     }
     

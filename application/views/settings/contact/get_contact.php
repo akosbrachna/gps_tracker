@@ -76,8 +76,8 @@ h5{
 
 <div class="photo">
 <?php if(file_exists($photo)): ?>
-        <a href="<?php echo base_url(str_replace('\\', '/', $photo)); ?>" target="_blank">
-            <img src="<?php echo base_url(str_replace('\\', '/', $photo)); ?>" style="width:100%">
+        <a href="<?php echo base_url($photo); ?>" target="_blank">
+            <img src="<?php echo base_url($photo); ?>" style="width:100%">
         </a>
 <?php else: ?>
         <a href="<?php echo base_url('web/pics/users/default.jpg'); ?>" target="_blank">
