@@ -75,15 +75,8 @@ h5{
 </div>
 
 <div class="photo">
-<?php if(file_exists($photo)): ?>
-        <a href="<?php echo base_url($photo); ?>" target="_blank">
-            <img src="<?php echo base_url($photo); ?>" style="width:100%">
-        </a>
-<?php else: ?>
-        <a href="<?php echo base_url('web/pics/users/default.jpg'); ?>" target="_blank">
-            <img src="<?php echo base_url('web/pics/users/default.jpg'); ?>" style="width:100%">
-        </a>
-<?php endif; ?>
+    <a href="<?php echo base_url($photo); ?>" target="_blank">
+    <img src="<?php echo base_url($photo); ?>" style="width:100%"></a>
 </div>
 <div class="get_contact">
     <h5 style="margin-bottom: 10px;">Contact settings</h5>

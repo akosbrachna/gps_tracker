@@ -11,20 +11,23 @@ class my_photo
     
     public function save_my_photo($email)
     {        
+        $CI =& get_instance();
+        
         $config['upload_path']   = realpath(FCPATH.$this->folder);
         $config['allowed_types'] = 'jpg|jpeg|png';
         $config['max_size']      = '300';
-        $this->load->library('upload', $config);
-        if ($this->upload->do_upload() == false)
+        $CI->load->library('upload', $config);
+        
+        if ($CI->upload->do_upload() == false)
         {
-            $this->upload->display_errors();
+            $CI->upload->display_errors();
             return false;
         }
         else
         {
             $this->file_path = realpath(FCPATH.$this->folder.$email.'.jpg');
             
-            $upload_data = $this->upload->data();
+            $upload_data = $CI->upload->data();
             $file = $upload_data['full_path'];
             rename($file, $this->file_path);
             return true;
@@ -40,7 +43,7 @@ class my_photo
         }
         else
         {
-            return false;
+            return realpath(FCPATH.$this->folder.'default.jpg');;
         }
     }
     
@@ -53,7 +56,7 @@ class my_photo
         }
         else
         {
-            return false;
+            return $this->folder.'default.jpg';;
         }
     }
 }

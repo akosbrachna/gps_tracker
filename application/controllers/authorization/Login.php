@@ -13,8 +13,7 @@ class Login extends Base_Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST')
         {
             $this->load->library('form_validation');
-            $this->form_validation->set_rules('email', 'Email address', 
-                                              'trim|required');
+            $this->form_validation->set_rules('email', 'Email address','trim|required');
             $this->form_validation->set_rules('password', 'Password', 
                                               'trim|required|min_length[4]|max_length[16]');
 
@@ -22,8 +21,7 @@ class Login extends Base_Controller
             {
                 if ($this->login_model->login() == false)
                 {
-                    $this->data['message'] = 'Incorrect username or password. '
-                                           . '<br/>'
+                    $this->data['message'] = 'Incorrect username or password. <br/>'
                                            . 'Please refresh the page and try again.';
                 }
                 else
@@ -40,8 +38,9 @@ class Login extends Base_Controller
                 }
             }
         }
-        $this->login_model->update_last_activity();
-        $this->data['pubkey'] = $this->encryption_model->generate_keys();
+        // only on http - no need for this on https
+//        $this->login_model->update_last_activity();
+//        $this->data['pubkey'] = $this->encryption_model->generate_keys();
         $this->load->view('authorization/login', $this->data);
     }
     

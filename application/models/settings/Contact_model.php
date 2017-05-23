@@ -45,14 +45,9 @@ class Contact_model extends CI_Model
             $users[$key]['Visibility'] = $value['status'];
             $users[$key]['Permission'] = $value['permission'];
             $users[$key]['Last seen']  = $value['gps_update_time'];
-            if ($path = $this->my_photo->get_photo_relative_path($value['email']))
-            {
-                $users[$key]['Photo'] = '<img src="'.$path.'" style="height:60px;">';
-            }
-            else
-            {
-                $users[$key]['Photo'] = '<img src="web/pics/users/default.jpg" style="height:60px;">';
-            }
+            $path = $this->my_photo->get_photo_relative_path($value['email']);
+            $users[$key]['Photo'] = '<img src="'.$path.'" style="height:60px;">';
+
             if ($value['latitude'])
             {
                 $json[$key]['id']        = $value['id'];

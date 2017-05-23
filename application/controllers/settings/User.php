@@ -47,8 +47,9 @@ class User extends Base_Controller
     {
         if ($this->user_model->delete_account())
         {
-            $photo = $this->my_photo->get_photo_absolute_path($this->session->userdata('email'));
-            if (file_exists($photo))
+            $photo   = $this->my_photo->get_photo_absolute_path($this->session->userdata('email'));
+            $default = $this->my_photo->get_photo_absolute_path('default');
+            if ($photo != $default)
             {
                 unlink($photo);
             }
@@ -58,7 +59,6 @@ class User extends Base_Controller
         else
         {
             $this->data['message'] .= 'Something went wrong. Please refresh your browser and try again.';
-            echo $this->data['message'];
             $this->send_messages();
         }
     }

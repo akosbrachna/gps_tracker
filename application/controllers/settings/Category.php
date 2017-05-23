@@ -7,7 +7,6 @@ class Category extends Base_Controller
     {
         parent::__construct();
         $this->load->model('settings/category_model');
-        $this->load->helper('my_table_helper');
     }
         
     public function create_category()

@@ -4,6 +4,7 @@
     <link rel="icon" href="<?php echo favicon_path;?>?v=2">
     <meta name="viewport" content="width=device-width, user-scalable = no">
     <meta charset="utf-8">
+    <script src="<?php echo base_url('web/js/libs/jquery-1.11.1.min.js');?>"></script>
     <script src="<?php echo base_url('web/js/libs/jsencrypt.min.js');?>"></script>
     <title>GPS Tracker</title>
 <style>
@@ -72,9 +73,9 @@
     <h2 style="margin-left: -20px;">Welcome to GPS Tracker</h2>
 <h3>Login  <a href="<?php echo base_url('signup') ?>">Register</a></h3>
 
-<?php echo form_open('', array('onsubmit' => "encrypt()")); ?>
+<?php echo form_open(); ?>
 
-<input name="pubkey" id="pubkey" value="<?php echo $pubkey; ?>" style="display: none;" />
+<input name="pubkey" id="pubkey" value="<?php if (!empty($pubkey)) echo $pubkey; ?>" style="display: none;" />
 
 Email address:<p><?php echo form_input('email', $this->input->post('email')); ?></p>
 
@@ -109,14 +110,16 @@ Password:<p> <?php echo form_password(array('name' => 'password',
 </div>
     
 <script>
-function encrypt()
-{
-    var encrypt = new JSEncrypt();
-    encrypt.setPublicKey(document.getElementById('pubkey').value);
-    var encrypted = encrypt.encrypt(document.getElementById('password').value);
-    document.getElementById('password').value = "superpassword";
-    document.getElementById('pubkey').value = encrypted;
-}
+// only on http - no need for this on https
+//$("form").submit(function(e)
+//    {
+//        e.stopPropagation();
+//        var encrypt = new JSEncrypt();
+//        encrypt.setPublicKey(document.getElementById('pubkey').value);
+//        var encrypted = encrypt.encrypt(document.getElementById('password').value);
+//        document.getElementById('password').value = "superpassword";
+//        document.getElementById('pubkey').value = encrypted;
+//    });
 </script>
 <script>
     var ua = window.navigator.userAgent

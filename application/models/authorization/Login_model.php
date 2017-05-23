@@ -7,11 +7,12 @@ class Login_model extends CI_Model
     {
         parent::__construct();
         $this->db = $this->load->database('default', TRUE);
-        $this->load->library('myencryption');
     }
     
-    public function login()
+    private function decrypt_password()
     {
+        $this->load->library('myencryption');
+        
         $pubkey = $this->input->post('pubkey', true);
         $pass = $this->db->select('private_key, last_activity, UNIX_TIMESTAMP() as unix_time', false)
                          ->where('session_id', $this->session->userdata('session_id'))
@@ -30,7 +31,13 @@ class Login_model extends CI_Model
             $privkey = $pass[0]['private_key'];
         }
         
-        $password = $this->myencryption->decrypt($pubkey, $privkey);
+        return $this->myencryption->decrypt($pubkey, $privkey);
+    }
+
+    public function login()
+    {
+        //$password = $this->decrypt_password(); // only on http - no need for this on https
+        $password = $this->input->post('password', true);
         $email    = strtolower($this->input->post('email', true));
         
         $phone    = $this->input->post('phone', true)?1:0;

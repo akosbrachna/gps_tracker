@@ -99,12 +99,7 @@
 <?php echo form_close(); ?>
 </div>
 
-<?php if(file_exists($photo)): ?>
-        <a href="<?php echo base_url($photo); ?>" target="_blank">
-           <img class="account_picture" src="<?php echo base_url($photo); ?>" />
-        </a>
-<?php else: ?>
-        <a href="<?php echo base_url('web/pics/users/default.jpg'); ?>" target="_blank">
-           <img class="account_picture" src="<?php echo base_url('web/pics/users/default.jpg'); ?>" />
-        </a>
-<?php endif; ?>
+<a href="<?php echo base_url($photo); ?>" target="_blank">
+   <img class="account_picture" src="<?php echo base_url($photo); ?>" />
+</a>
+
