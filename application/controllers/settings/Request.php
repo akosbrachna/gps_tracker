@@ -90,11 +90,27 @@ class Request extends Base_Controller
     
     public function accept_request()
     {
-        $this->request_model->accept_request();
+        if ($this->request_model->accept_request())
+        {
+            $this->data['message'] = 'Contact has been added to your contacts.';
+        }
+        else
+        {
+            $this->data['message'] = 'Something went wrong.';
+        }
+        $this->send_messages();
     }
     
     public function cancel_request()
     {
-        $this->request_model->cancel_request();
+        if ($this->request_model->cancel_request())
+        {
+            $this->data['message'] = 'Request has been cancelled.';
+        }
+        else
+        {
+            $this->data['message'] = 'Something went wrong.';
+        }
+        $this->send_messages();
     }
 }
