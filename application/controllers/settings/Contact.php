@@ -17,9 +17,8 @@ class Contact extends Base_Controller
         if (count($this->data['records']) == 0)
         {
             $this->data['message'] = 'No records.';
+            $this->send_messages();
         }
-        $this->send_messages();
-
         $this->load->view('settings/contact/contacts', $this->data);
     }
     

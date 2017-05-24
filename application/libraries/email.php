@@ -1,5 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+// dummy email class while testing. This overrides codeigniter's email library
 class email 
 {
     public function send()

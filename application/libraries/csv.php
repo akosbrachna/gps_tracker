@@ -2,7 +2,6 @@
 
 class csv
 {
-    // stock/stock_list
     public function generate_csv($data)
     {
         $i = 0;

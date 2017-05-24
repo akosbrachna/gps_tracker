@@ -50,8 +50,8 @@ class Category extends Base_Controller
         if (count($this->data['records']) == 0)
         {
             $this->data['message'] = 'No category.';
+            $this->send_messages();
         }
-        $this->send_messages();
         $this->load->view('settings/category/category', $this->data);
     }
     

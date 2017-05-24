@@ -42,11 +42,13 @@ class Registration extends Base_Controller
                         $this->my_photo->save_my_photo($this->input->post('email'));
                         if ($this->send_email())
                         {
-                            $this->data['message'].= 'Account has been successfully created.<br/>'
+                            $this->data['message'].= 'Account has been successfully created.<br/><br/>'
                                                    . 'A confirmation email has been sent to you.<br/>'
-                                                   . '(You may need to check your spam folder too.)<br/>'
-                                                   . 'You can login to the website after you clicked '
-                                                   . 'on the confirmation link in the email.';
+                                                   . '(You may need to check your spam folder too.)<br/><br/>'
+                                                   . 'You can login to the website after you clicked<br/>'
+                                                   . 'the confirmation link in the email.';
+                            $this->load->view('templates/message', $this->data);
+                            return;
                         }
                         else
                         {
@@ -55,12 +57,9 @@ class Registration extends Base_Controller
                                                     . 'Please try to register again.<br/>'
                                                     . 'Check if your email address is correct.';
                         }
-                        $this->send_messages();
                     }
                 }
             }
-            $this->send_messages();
-            return;
         }
         $this->load->view('authorization/register', $this->data);
     }
@@ -91,7 +90,7 @@ class Registration extends Base_Controller
     {
         if ($this->registration_model->confirm($hash_key))
         {
-            $this->data['message'] = 'Email confirmed.<br/>'
+            $this->data['message'] = 'Email confirmed.<br/><br/>'
                                    . 'You can now log in to the website on the  '
                                    .'<a href="'.base_url().'" >login page</a>';
         }
@@ -99,6 +98,6 @@ class Registration extends Base_Controller
         {
             $this->data['message'] = 'Something went wrong. Please try to register again.';
         }
-        $this->send_messages();
+        $this->load->view('templates/message', $this->data);
     }
 }

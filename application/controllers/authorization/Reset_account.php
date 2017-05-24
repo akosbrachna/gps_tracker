@@ -51,7 +51,7 @@ class Reset_account extends Base_Controller
                         else
                         {
                             $this->data['message'] = 'Something went wrong. Please try again.'
-                                             . 'You may need to refresh the page.';
+                                                   . 'You may need to refresh the page.';
                         }
                     }
                 }
