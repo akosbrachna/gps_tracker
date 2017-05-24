@@ -2,8 +2,7 @@
 
 About the application
 
-GPS tracker is a simple web based map tracking application which is still under development.
-It can be used or modified freely.
+GPS tracker is a simple web based map tracking application.
 
 A device with a web browser and gps capability is needed to send gps locations to the website which can be 
 installed on any web server that runs apache php mysql.
@@ -29,6 +28,7 @@ and it uses google map.
 I'm no sure about legal issues on google map but because this is a free project 
 hopefully there's no problem with it.
 As far as i'm aware google map can not be used in commercial applications for free.
+This project can be used or modified freely.
 
 Setting up the project
 
@@ -40,6 +40,7 @@ RewriteBase /gps_tracker/
 3. In application/config/database.php file - database server parameters should be set
 
 4. run http://localhost/gps_tracker/database/tables/create
-this will create the tables in the database. Replace localhost with your server domain.
+this will create the tables in the database. 
+Replace localhost with your server domain.
 
 5. In application/config/email.php file - the smtp provider should be set

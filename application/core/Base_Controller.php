@@ -6,6 +6,7 @@
 class Base_Controller extends CI_Controller 
 {
     public $data = array();
+    private $controller;
     public $exceptions = array(
                 'authorization/reset_account/forgot_password',
                 'authorization/reset_account/reset_password',
@@ -13,12 +14,16 @@ class Base_Controller extends CI_Controller
                 'authorization/registration/confirm',
                 'android/data_exchange/get_contacts_locations',
                 'android/data_exchange/set_my_location',
-                'android/data_exchange/check_my_connection',
-                'database/tables/create'
+                'android/data_exchange/check_my_connection'
         );
     function __construct()
     {
         parent::__construct();
+        $this->controller = $this->get_controller();
+        if ($this->controller == 'database/tables/create')
+        {
+            return;
+        }
         $this->load->library('session');
         $this->load->model('authorization/login_model');
         $this->check_access_rights();
@@ -28,8 +33,7 @@ class Base_Controller extends CI_Controller
     //firewall
     private function check_access_rights()
     {   
-        
-        $controller   = $this->get_controller();
+        $controller = $this->controller;
         
         foreach ($this->exceptions as $exception) 
         {

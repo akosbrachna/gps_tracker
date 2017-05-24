@@ -2,7 +2,7 @@
 
 class Tables extends Base_Controller
 {
-    private $db;
+    public $db;
     
     public function __construct()
     {
@@ -13,13 +13,29 @@ class Tables extends Base_Controller
     
     public function create()
     {
+        $this->db->trans_start();
+        $this->ci_sessions();
         $this->category();
         $this->contacts();
         $this->user();
         $this->requests();
         $this->navigation();
+        if ($this->db->trans_complete()) echo " Tables have been created successfully.";
     }
     
+    private function ci_sessions()
+    {
+        $this->dbforge->add_field("session_id varchar(40) NOT NULL DEFAULT '0'");
+        $this->dbforge->add_field("ip_address varchar(45) NOT NULL DEFAULT '0'");
+        $this->dbforge->add_field("user_agent varchar(120) NOT NULL");
+        $this->dbforge->add_field("last_activity int(10) unsigned NOT NULL DEFAULT '0'");
+        $this->dbforge->add_field("user_data text NOT NULL");
+        $this->dbforge->add_field("private_key varchar(2048) DEFAULT NULL");
+        $this->dbforge->add_key('session_id', TRUE);
+        $this->dbforge->add_key('last_activity', TRUE);
+        $this->dbforge->create_table('ci_sessions', TRUE);
+    }
+
     private function category()
     {
         $this->dbforge->add_field("id int(11) NOT NULL AUTO_INCREMENT");
