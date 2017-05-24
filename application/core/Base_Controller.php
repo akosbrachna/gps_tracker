@@ -13,7 +13,8 @@ class Base_Controller extends CI_Controller
                 'authorization/registration/confirm',
                 'android/data_exchange/get_contacts_locations',
                 'android/data_exchange/set_my_location',
-                'android/data_exchange/check_my_connection'
+                'android/data_exchange/check_my_connection',
+                'database/tables/create'
         );
     function __construct()
     {

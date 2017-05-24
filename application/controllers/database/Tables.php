@@ -1,8 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Create_tables extends Base_Controller
+class Tables extends Base_Controller
 {
     private $db;
+    
     public function __construct()
     {
         parent::__construct();
@@ -10,7 +11,7 @@ class Create_tables extends Base_Controller
         $this->load->dbforge($this->db);
     }
     
-    public function create_tables()
+    public function create()
     {
         $this->category();
         $this->contacts();
@@ -30,7 +31,6 @@ class Create_tables extends Base_Controller
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('category', TRUE);
     }
-
 
     private function contacts()
     {
@@ -87,14 +87,15 @@ class Create_tables extends Base_Controller
         $this->dbforge->add_key('id', TRUE);
         if ($this->dbforge->create_table('navigation', TRUE))
         {
-            $this->init_navigation_table();
+            $data = $this->init_navigation_table();
+            $this->db->insert_batch('navigation', $data);
         }
         
     }
     
     private function init_navigation_table()
     {
-        $data = array(
+        return array(
             array(
                   "controller"=>"settings/request/send_request",
                   "navigation_menu"=>"settings",

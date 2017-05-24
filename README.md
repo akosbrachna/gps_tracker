@@ -32,13 +32,14 @@ As far as i'm aware google map can not be used in commercial applications for fr
 
 Setting up the project
 
-The mysql database info will be added later...
-
-In application/config/config.php file - the base url shoud be set: $config['base_url']
-
-In application/config/database.php file - database server parameters should be set
-
-In application/config/email.php file - the smtp provider should be set
-
-In the project root folder in the .htaccess file the base directory name may need to be changed:
+1. In the project root folder in the .htaccess file the base directory name may need to be changed:
 RewriteBase /gps_tracker/
+
+2. In application/config/config.php file - the base url shoud be set: $config['base_url']
+
+3. In application/config/database.php file - database server parameters should be set
+
+4. run http://localhost/gps_tracker/database/tables/create
+this will create the tables in the database. Replace localhost with your server domain.
+
+5. In application/config/email.php file - the smtp provider should be set
