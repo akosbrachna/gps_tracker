@@ -72,8 +72,7 @@ function submit_form(id)
                 {
                     $(id+' file').html($(data).filter('file').html());
                     $(id+' message').html($(data).filter('main').html());
-                    $(id+' form_message').html($(data).filter('form_message').html()).show().delay(2000).fadeOut();
-                    setTimeout(function(){ jQuery("form_message").hide(); }, 2400);
+                    $('#site_message').html($(data).filter('form_message').html()).show().delay(3000).fadeOut();
                     form_attr.table_row();
                     $('#spinning_wheel').fadeOut(200);
                     $("#userfile").replaceWith($("#userfile").val('').clone(true));

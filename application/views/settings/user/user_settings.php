@@ -85,7 +85,6 @@
         </tr>
         </tbody>
     </table>
-<form_message></form_message>
 <message></message>
 <p style="margin-top: 10px;"><?php echo form_submit('submit', 'Change'); ?></p>
 <?php echo form_close(); ?>

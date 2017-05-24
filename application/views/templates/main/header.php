@@ -16,5 +16,24 @@
     <script src="<?php echo base_url('web/js/libs/jquery.cookie.js');?>"></script>
     <script src="<?php echo base_url('web/js/libs/jquery-ui-1.11.1/jquery-ui.min.js');?>"></script>
     <script src="http://maps.google.com/maps/api/js"></script>
+    <style>
+        #site_message{
+            position: absolute;
+            top: 0px;
+            left: 50%;
+            width: 80%;
+            margin-left: -40%;
+            padding: 10px;
+            border: 2px solid rgb(200,200,255);
+            color: red;
+            font-size: 16px;
+            font-weight: bold;
+            z-index: 10000;
+            display: none;
+            background: rgb(250,250,250);
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
+<div id='site_message'></div>

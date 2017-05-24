@@ -89,13 +89,5 @@ class Base_Controller extends CI_Controller
             echo $this->data['message'];
             echo '</form_message>';
         }
-        if (isset($this->data['relative_path']))
-        {
-           echo '<file>';
-           echo '<a target="_blank" ';
-           echo 'href="'.base_url(str_replace('\\', '/', $this->data['relative_path'])).'">';
-           echo 'Download file</a>';
-           echo '</file>';
-        }
     }
 }

@@ -47,7 +47,6 @@
 </table>
 <p style="margin-top: 10px;"><?php echo form_submit('submit', 'Send'); ?></p>
 <?php echo form_close(); ?>
-<form_message></form_message>
 <message></message>
 </div>
 

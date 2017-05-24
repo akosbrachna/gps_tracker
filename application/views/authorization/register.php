@@ -114,7 +114,6 @@ table
 <?php echo validation_errors();
       if (isset($message)) echo $message;
 ?>
-<form_message></form_message>
 <p><?php echo form_submit('submit', 'Register'); ?></p>
 <?php echo form_close(); ?>
 <message></message>

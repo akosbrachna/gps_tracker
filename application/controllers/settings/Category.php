@@ -91,8 +91,8 @@ class Category extends Base_Controller
                     }
                 }
             }
+            $this->send_messages();
         }
-        $this->send_messages();
     }
     
     public function delete_category()
