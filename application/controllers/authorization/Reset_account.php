@@ -57,7 +57,7 @@ class Reset_account extends Base_Controller
                 }
             }
         }
-        $this->load->view('authorization/forgot_password');
+        $this->load->view('authorization/forgot_password', $this->data);
     }
     
     public function reset_password($hash = 'no hash')
@@ -82,11 +82,12 @@ class Reset_account extends Base_Controller
                 else
                 {
                     $this->data['message'] = 'Something went wrong.<br />';
-                    $this->data['message'].= 'Please go back to the <a href="'.base_url().'authorization/authorization/forgot_password">'
+                    $this->data['message'].= 'Please go back to the <a href="'.base_url()
+                                     .'authorization/authorization/forgot_password">'
                                     . 'password reset page</a> and try again.<br />';
                 }
             }
         }
-        $this->load->view('authorization/reset_password');
+        $this->load->view('authorization/reset_password', $this->data);
     }
 }

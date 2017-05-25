@@ -34,6 +34,21 @@
     #save_password table td:first-child{
         width: 130px;
     }
+    .login_footer{
+    background: rgb(245,245,245);
+    border: 2px rgb(200,200,255) solid;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 30px;
+}
+.login_footer a{
+    position: absolute;
+    left: 50%;
+    margin-left: -80px;
+    font-weight: bold;
+}
     </style>
 </head>
 <body>
@@ -58,3 +73,10 @@
 <?php echo validation_errors(); ?>
 <?php if (isset($message)) echo $message; ?>
 </div>
+
+<div class="login_footer">
+    <a href="https://github.com/akosbrachna/gps_tracker/" target="_blank">About GPS Tracker</a>
+</div>
+
+</body>
+</html>

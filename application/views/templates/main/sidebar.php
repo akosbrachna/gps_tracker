@@ -60,7 +60,7 @@ body{
 
 <?php $this->load->helper('navigation');?>
 
-<div id="sidebar_toggle">Close</div>
+<!--<div id="sidebar_toggle">Close</div>-->
 
 <div id='sidebar'>
 <?php 
