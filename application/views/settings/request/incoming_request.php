@@ -103,3 +103,9 @@ h5{
 <p><?php echo form_submit('submit', 'Cancel'); ?></p>
 <?php echo form_close(); ?>
 </div>
+
+<script>
+    callback = function(){
+        document.getElementById("settings/request/send_request").click();
+    }
+</script>

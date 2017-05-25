@@ -69,3 +69,9 @@ h5{
         </a>
     <?php endif; ?>
 </div>
+
+<script>
+    callback = function(){
+        document.getElementById("settings/request/send_request").click();
+    }
+</script>

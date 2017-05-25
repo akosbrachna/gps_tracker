@@ -69,3 +69,9 @@ echo draw_table($this->data['outgoing_requests']);
 
     table_row();
 </script>
+
+<script>
+    callback = function(){
+        document.getElementById("settings/request/send_request").click();
+    }
+</script>

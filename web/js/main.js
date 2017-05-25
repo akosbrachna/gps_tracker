@@ -7,7 +7,7 @@ var form_attr = {
     dialog_title: 'Stock Form',
 };
 
-var callback = function(){return;};
+var callback = function(){ return;};
 
 var table_row = function()
 {
@@ -75,6 +75,8 @@ function submit_form(id)
                     $('#site_message').html($(data).filter('form_message').html()).show().delay(3000).fadeOut();
                     form_attr.table_row();
                     $('#spinning_wheel').fadeOut(200);
+                    callback();
+                    callback = function(){return;};
                     $("#userfile").replaceWith($("#userfile").val('').clone(true));
                     sorttable.makeSortable($(id+' message').find(".sortable").get(0));
                 },

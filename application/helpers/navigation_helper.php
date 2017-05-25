@@ -18,8 +18,11 @@ if ( function_exists('nav_side_menu') == false)
                      . '<ol>';
                 while($i<$num)
                 {
-                    echo '<li class="file"><a class="side_menu_item" href="'.$items[$i]->controller.'">'
-                          .$items[$i]->title.'</a></li>';
+                    echo '<li class="file">'
+                            .'<a class="side_menu_item" '
+                            . 'id="'.$items[$i]->controller.'" '
+                            . 'href="'.$items[$i]->controller.'">'
+                            .$items[$i]->title.'</a></li>';
                     $i++;
                     if ($i == $num)
                     break;
@@ -71,7 +74,8 @@ if ( function_exists('nav_side_menu_dynamic') == false)
                      . '<ol>';
                 while($i<$num)
                 {
-                    echo '<li class="file"><a href="'.$items[$i]->controller.'">'.$items[$i]->title.'</a></li>';
+                    echo '<li class="file"><a href="'.$items[$i]->controller.'">'
+                            .$items[$i]->title.'</a></li>';
                     $i++;
                     if($items[$i]->submenu <> $submenu)
                     {

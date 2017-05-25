@@ -131,3 +131,9 @@ h5{
 <p><?php echo form_submit('submit', 'Remove'); ?></p>
 <?php echo form_close(); ?>
 </div>
+
+<script>
+    callback = function(){
+        document.getElementById("settings/contact/contacts").click();
+    }
+</script>

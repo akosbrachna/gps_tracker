@@ -93,3 +93,8 @@ h5{
     </font></p>
 </div>
 
+<script>
+    callback = function(){
+        document.getElementById("settings/category/create_category").click();
+    }
+</script>
