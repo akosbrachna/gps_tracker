@@ -14,7 +14,7 @@ class Category extends Base_Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST')
         {
             $this->load->library('form_validation');
-            $this->form_validation->set_rules('name', 'Group name', 'trim|required');
+            $this->form_validation->set_rules('name', 'Category name', 'trim|required');
             
             if ($this->form_validation->run())
             {
@@ -81,7 +81,7 @@ class Category extends Base_Controller
                 {
                     if ($this->category_model->modify_category())
                         {
-                        $this->data['message'] = 'Group has been successfully modified. ';
+                        $this->data['message'] = 'Category has been successfully modified. ';
                     }
                     else
                     {
@@ -97,13 +97,19 @@ class Category extends Base_Controller
     
     public function delete_category()
     {
-        if ($this->category_model->delete_category())
-        {
-            $this->data['message'] = 'Group has been successfully deleted.';
-        }
-        else 
-        {
-            $this->data['message'] = 'Something went wrong. Please try again.';
+        switch ($this->category_model->delete_category()) {
+            case 1:
+                $this->data['message'] = 'Category cannot be deleted as '
+                                       . 'there should be at least one category.';
+                break;
+            case 2:
+                $this->data['message'] = 'Category has been successfully deleted.';
+                break;
+            case 3:
+                $this->data['message'] = 'Something went wrong. Please try again.';
+                break;
+            default:
+                break;
         }
         $this->send_messages();
     }

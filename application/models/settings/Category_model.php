@@ -93,6 +93,14 @@ class Category_model extends CI_Model
         $category = $this->input->post('name', true);
         $owner    = $this->session->userdata('email');
         
+        $quantity = $this->db->where('owner', $owner)
+                             ->get('category')
+                             ->num_rows();
+        if ($quantity == 1)
+        {
+            return 1;
+        }
+        
         $this->db->trans_start();
         
         $contacts = $this->db->where('category', $category)
@@ -115,6 +123,7 @@ class Category_model extends CI_Model
                  ->where('owner', $owner)
                  ->delete('contacts');
                 
-        $this->db->trans_complete();
+        if ($this->db->trans_complete()) return 2;
+        return 3;
     }
 }

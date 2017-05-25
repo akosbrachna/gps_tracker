@@ -52,3 +52,9 @@ echo draw_table($this->data['records']);
 
     table_row();
 </script>
+
+<script>
+    callback = function(){
+        document.getElementById("settings/category/create_category").click();
+    }
+</script>
