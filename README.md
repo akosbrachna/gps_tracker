@@ -6,10 +6,14 @@ GPS tracker is a simple web based map tracking application.
 
 A device with a web browser and gps capability is needed to send gps locations to the website which can be 
 installed on any web server that runs apache php mysql.
+
 Registered users share their gps locations through the website and can track each other on the map.
+
 Registered users have to send tracking requests to others on the website.
+
 Contact settings such as permission or visibility can be enabled or disabled dynamically on each user.
 Contacts can be added or removed.
+
 Categories can be made such as friends, family etc. 
 Category settings (permission, visibility) are applied to all users in the selected category.
 
@@ -33,12 +37,14 @@ Setting up the project
 1. In the project root folder in the .htaccess file the base directory name may need to be changed:
 RewriteBase /gps_tracker/
 
-2. In application/config/config.php file - the base url shoud be set: $config['base_url']
+2. application/config/config.php - the base url shoud be set: $config['base_url']
 
-3. In application/config/database.php file - database server parameters should be set
+3. application/config/database.php - database server parameters should be set
 
 4. run http://localhost/gps_tracker/database/tables/create
 this will create the tables in the database. 
 Replace localhost with your server domain.
 
-5. In application/config/email.php file - the smtp provider should be set
+5. application/config/email.php - the smtp provider should be set
+
+A working example can be found here: https://akosbrachna.000webhostapp.com/
