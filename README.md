@@ -25,8 +25,6 @@ The project
 
 The project uses the codeigniter php framework ( https://www.codeigniter.com ) and runs on apache-php-mysql 
 and it uses google map.
-I'm no sure about legal issues on google map but because this is a free project 
-hopefully there's no problem with it.
 As far as i'm aware google map can not be used in commercial applications for free.
 This project can be used or modified freely.
 

@@ -45,19 +45,23 @@ class Registration_model extends CI_Model
     
     public function confirm($hash_key)
     {   
-        $this->db->trans_start();
         $user = $this->db->where('confirm', $hash_key)
                          ->get('user')
                          ->result_array();
-        if (count($user) > 0)
+        if (count($user) == 1)
         {
             $category = array(
                 'name'  => 'Friends',
                 'owner' => $user[0]['email']
             );
+            $this->db->trans_start();
             $this->db->insert('category', $category);
             $this->db->where('confirm', $hash_key)->update('user', array('confirm'=>'1'));
+            return $this->db->trans_complete();
         }
-        return $this->db->trans_complete();
+        else 
+        {
+            return false;
+        }
     }
 }
