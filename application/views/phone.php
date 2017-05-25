@@ -10,7 +10,7 @@
     <script><?php $this->load->view('phone/js/libs/jquery.storageapi.min.js');?></script>
     <script><?php $this->load->view('phone/js/libs/sorttable.min.js'); ?></script>
     <script><?php $this->load->view('phone/js/libs/jquery.cookie.js'); ?></script>
-    <script src="http://maps.google.com/maps/api/js"></script>
+    <script src="https://maps.google.com/maps/api/js"></script>
 </head>
 <body>
 <?php $this->load->view('phone/js/modules/map'); ?>

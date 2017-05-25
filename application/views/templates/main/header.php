@@ -15,7 +15,7 @@
     <script src="<?php echo base_url('web/js/libs/sorttable.js');?>"></script>
     <script src="<?php echo base_url('web/js/libs/jquery.cookie.js');?>"></script>
     <script src="<?php echo base_url('web/js/libs/jquery-ui-1.11.1/jquery-ui.min.js');?>"></script>
-    <script src="http://maps.google.com/maps/api/js"></script>
+    <script src="https://maps.google.com/maps/api/js"></script>
     <style>
         #site_message{
             position: absolute;
