@@ -36,7 +36,8 @@ class Reset_account extends Base_Controller
                         $message = 'Hello '.$this->input->post('email').'!<br /><br />'
                                  . 'There was a request to change your password. '
                                  . 'If you did not make this request, just ignore this email.<br />'
-                                 . 'Otherwise, please click the following link to change your password at SCT:<br />'
+                                 . 'Otherwise, please click the following link '
+                                 . 'to change your password on the GPS Tracker website:<br />'
                                  . '<a href="'.base_url("change_password/$hash").'" >Change password</a>';
 
                         $this->email->from('gps_tracker@gmail.com', 'GPS Tracker support');
