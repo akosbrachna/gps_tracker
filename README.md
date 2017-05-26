@@ -20,11 +20,9 @@ Category settings (permission, visibility) are applied to all users in the selec
 If the website is running in a phone's browser it will be periodically sending the gps coordinates 
 to the server so long as the phone's browser is open. You will also see your contacts' location on the map.
 
-An android application is being under development too and as a native application 
-it will be running as a foreground service.
-That project will also be shared on github and the apk can be downloaded on the phone interface. 
-"Logging in on phone?" checkbox needs to be ticked on the login page.
-
+An android application is being developed too. That project is also shared on
+<a href="https://github.com/akosbrachna/gps_tracking_android" target="_blank">github</a> 
+    
 
 The project
 
