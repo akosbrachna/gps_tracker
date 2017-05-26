@@ -77,4 +77,26 @@ class Data_exchange_model extends CI_Model
         $contacts[] = $owner[0];
         return $contacts;
     }
+    
+    public function get_all_contacts($email, $password)
+    {
+        $my_email = strtolower($email);
+        $select = 'first_name, last_name, email';
+        
+        $owner = $this->db->select($select)
+                          ->where('email', $my_email)
+                          ->where('password', md5($password))
+                          ->get('user')
+                          ->result_array();
+        if (count($owner) != 1) return array();
+                
+        $contacts = $this->db->select($select)
+                             ->from('user')
+                             ->join('contacts', 'contacts.member = user.email')
+                             ->where('contacts.owner', $my_email)
+                             ->get()
+                             ->result_array();
+        $contacts[] = $owner[0];
+        return $contacts;
+    }
 }
