@@ -13,6 +13,7 @@
     width: 100%;
     height: 100%;
     z-index: -1;
+    border: 2px solid rgb(50,50,150);
 }
 #register_user
 {
@@ -24,7 +25,7 @@
     background: rgb(255,255,250) !important;
     padding: 20px;
     padding-top: 5px ;
-    border: 2px rgb(200,200,255) solid;
+    border: 2px rgb(100,100,255) solid;
     color: rgb(0,0,205);
     font-weight: bold;
 }
@@ -53,19 +54,23 @@ table
     margin-left: 40px;
 }
 .login_footer{
-    background: rgb(245,245,245);
-    border: 2px rgb(200,200,255) solid;
+    background: rgb(240,245,245);
+    opacity: 0.7;
+    filter: alpha(opacity = 70);
+    border-bottom: 2px rgb(100,100,155) solid;
     position: fixed;
-    bottom: 0px;
+    top: 0px;
     left: 0px;
     width: 100%;
     height: 30px;
+    padding-top:5px;
 }
 .login_footer a{
     position: absolute;
     left: 50%;
     margin-left: -80px;
     font-weight: bold;
+    color: rgb(0,25,125);
 }
 </style>
 </head>

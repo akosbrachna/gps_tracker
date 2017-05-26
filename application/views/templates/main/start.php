@@ -8,6 +8,7 @@
     width: 100%;
     height: 100%;
     z-index: -1;
+    border: 2px solid rgb(50,50,150);
     /*opacity: 0.8;*/
 }
 #main_text{

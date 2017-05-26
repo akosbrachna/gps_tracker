@@ -22,14 +22,15 @@ to the server so long as the phone's browser is open. You will also see your con
 
 An android application is being under development too and as a native application 
 it will be running as a foreground service.
-That project will also be shared on github and the apk will be available on the website.
+That project will also be shared on github and the apk can be downloaded on the phone interface. 
+"Logging in on phone?" checkbox needs to be ticked on the login page.
 
 
 The project
 
-The project uses the codeigniter php framework ( https://www.codeigniter.com ) and runs on apache-php-mysql 
+The project uses the codeigniter php framework ( https://www.codeigniter.com ) and runs on apache php mysql 
 and it uses google map.
-As far as i'm aware google map can not be used in commercial applications for free.
+As far as i know google map can not be used in commercial applications for free.
 This project can be used or modified freely.
 
 Setting up the project
