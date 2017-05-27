@@ -55,7 +55,7 @@ class User_model extends CI_Model
                  ->delete('contacts');
         
         $this->db->where('request_to', $user)
-                 ->or_where('request_from')
+                 ->or_where('request_from', $user)
                  ->delete('requests');
         
         $this->db->where('email', $user)
