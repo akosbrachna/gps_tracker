@@ -82,6 +82,7 @@
 
 <script>
     var frequency = 3;
+    var timer = null;
     function frequency_changed(input)
     {
         if (input.value > 10 || input.value <1)
@@ -90,6 +91,8 @@
             return;
         }
         frequency = parseInt(input.value);
+        clearTimeout(timer);
+        timer = setTimeout(refresh_map, frequency*60*1000);
     }
 </script>
 <script>
@@ -346,7 +349,7 @@ function refresh_map()
         success:function(data)
         {
             show_users_on_map($.parseJSON(data));
-            setTimeout(refresh_map, frequency*60*1000);
+            timer = setTimeout(refresh_map, frequency*60*1000);
         },
         error: function(data)
         {
