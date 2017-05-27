@@ -27,10 +27,18 @@ class Data_exchange extends Base_Controller
         echo json_encode($data);
     }
     
-        public function get_all_contacts($email, $password)
+    public function get_all_contacts($email, $password)
     {
-        $data = $this->data_exchange_model->get_all_contacts($email, $password);
+        $data = $this->data_exchange_model->get_all_contacts(strtolower($email), md5($password));
         
         echo json_encode($data);
+    }
+    
+    public function change_contact_settings($email, $password, $contact_email, $status)
+    {
+        echo $this->data_exchange_model->change_contact_settings(strtolower($email), 
+                                                                 md5($password), 
+                                                                 strtolower($contact_email), 
+                                                                 $status);
     }
 }
