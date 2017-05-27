@@ -18,11 +18,12 @@ Categories can be made such as friends, family etc.
 Category settings (permission, visibility) are applied to all users in the selected category.
 
 If the website is running in a phone's browser it will be periodically sending the gps coordinates 
-to the server so long as the phone's browser is open. You will also see your contacts' location on the map.
+to the server so long as the phone's browser is open. You will also see your contacts' locations on the map.
 
 An android application is being developed too. The android application as a foreground service 
 can continuously be sending the gps locations from the phone to the server without having to keep 
-the browser window open.
+the browser window open. The android application can also send the coordinates to 
+a given phone number as an sms text message in case no sever or 3G connection is available.
 That project is also shared on
 <a href="https://github.com/akosbrachna/gps_tracking_android" target="_blank">github</a> 
     

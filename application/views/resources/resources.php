@@ -22,7 +22,9 @@
     or through the phone interface ("Logging in on phone?" checkbox needs to be ticked 
     on the login page to log in to the phone interface on the website).<br />
     The android application as a foreground service can continuously and seamlessly be sending 
-    the gps location from the phone to the server without having to keep the browser window open.<br />
+    the gps locations from the phone to the server without having to keep the browser window open.<br />
+    It can also send the coordinates to a given phone number as an sms text message 
+    in case no sever or 3G connection is available.
     On the phone's settings page the email and password should be the same as your user name and 
     password on the website and the server address should be the domain name of the website as 
     it is shown in the picture:
