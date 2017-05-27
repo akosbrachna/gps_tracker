@@ -24,7 +24,7 @@
     The android application as a foreground service can continuously and seamlessly be sending 
     the gps locations from the phone to the server without having to keep the browser window open.<br />
     It can also send the coordinates to a given phone number as an sms text message 
-    in case no sever or 3G connection is available.
+    in case no server or 3G connection is available.<br />
     On the phone's settings page the email and password should be the same as your user name and 
     password on the website and the server address should be the domain name of the website as 
     it is shown in the picture:

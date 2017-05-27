@@ -67,7 +67,7 @@
     <br/>
     <p>
       <label for="frequency">Refresh frequency: </label>
-      <input type="number" id="frequency" value="3" min="1" max="10" onblur="frequency_changed(this);">minutes<br/>
+      <input type="number" id="frequency" value="3" min="1" max="10" onchange="frequency_changed(this);">minutes<br/>
       Value should be between 1 and 10.
     </p>
     <br/>
@@ -89,7 +89,7 @@
             alert("The frequency value should be between 1 and 10.");
             return;
         }
-        frequency = input.value;
+        frequency = parseInt(input.value);
     }
 </script>
 <script>
