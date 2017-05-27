@@ -23,8 +23,9 @@
     on the login page to log in to the phone interface on the website).<br />
     The android application as a foreground service can continuously and seamlessly be sending 
     the gps location from the phone to the server without having to keep the browser window open.<br />
-    On the phone's settings page the email and password should be the same that is your login password on the 
-    website and the server address should be the domain name of the website as it is shown in the picture:
+    On the phone's settings page the email and password should be the same as your user name and 
+    password on the website and the server address should be the domain name of the website as 
+    it is shown in the picture:
     <br/>
     <a href="web/pics/gps_tracker_android.png" target="_blank">
         <img style="width: 200px;" src="web/pics/gps_tracker_android.png" /></a>
