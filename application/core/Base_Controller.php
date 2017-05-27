@@ -14,7 +14,9 @@ class Base_Controller extends CI_Controller
                 'authorization/registration/confirm',
                 'android/data_exchange/get_contacts_locations',
                 'android/data_exchange/set_my_location',
-                'android/data_exchange/check_my_connection'
+                'android/data_exchange/check_my_connection',
+                'android/data_exchange/get_all_contacts',
+                'android/data_exchange/change_contact_settings',
         );
     function __construct()
     {
@@ -34,6 +36,8 @@ class Base_Controller extends CI_Controller
     private function check_access_rights()
     {   
         $controller = $this->controller;
+        
+        if ($this->router->directory == "android") return;
         
         foreach ($this->exceptions as $exception) 
         {
