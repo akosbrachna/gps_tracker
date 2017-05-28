@@ -50,7 +50,7 @@ $("#map_contacts").height($("#map_canvas_contacts").height());
 
 map = new google.maps.Map(document.getElementById("map_canvas_contacts"), 
                     { center:new google.maps.LatLng(0, 0),
-                      zoom: 7,
+                      zoom: 2,
                       mapTypeId: google.maps.MapTypeId.ROADMAP });
 
 var first_loaded = true;
