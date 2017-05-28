@@ -79,7 +79,7 @@ class Registration extends Base_Controller
                  . '<a href="'.base_url('confirm').'/'.$hash.'" >Confirm email</a>';
         
         $this->email->to($email);
-        $this->email->from('gps_tracker@gmail.com', 'GPS Tracker support');
+        $this->email->from('gps.tracker.webhost@gmail.com', 'GPS Tracker support');
         $this->email->subject('Registration on GPS tracker confirmation email.');
         $this->email->message($message);
 

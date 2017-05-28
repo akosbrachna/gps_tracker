@@ -16,28 +16,49 @@ class User_model extends CI_Model
         $current_email = $this->session->userdata('email');
         $new_email     = strtolower($this->input->post('email', true));
         $password      = $this->input->post('password', true);
-        
+        $result        = 0;
+        $user = array(
+           'first_name'   => $this->input->post('first_name', true),
+           'last_name'    => $this->input->post('last_name', true),
+           'address'      => $this->input->post('address', true),
+           'phone_number' => $this->input->post('phone_number', true),
+        );
         if ($current_email != $new_email)
         {
             $check = $this->db->where('email', $new_email)
                               ->get('user')
                               ->num_rows();
-            if ($check != 0) return 2;
-            $this->load->library('my_photo');
-            $this->my_photo->rename_photo($current_email, $new_email);
+            if ($check != 0) return 3;
+            $result = 1;
+            $user['new_email'] = $new_email;
+            $user['confirm']   = md5($new_email).$this->session->userdata('session_id');
         }
-        
-        $user = array(
-           'first_name'   => $this->input->post('first_name', true),
-           'last_name'    => $this->input->post('last_name', true),
-           'email'        => $new_email,
-           'address'      => $this->input->post('address', true),
-           'phone_number' => $this->input->post('phone_number', true),
-        );
         if (!empty($password))
         {
             $user['password'] = md5($password);
         }
+        if ($this->db->where('id', $id)->update('user', $user))
+        {
+                $result++;
+        }
+        else{
+            $result = 0;
+        }
+        
+        return $result;
+    }
+    
+    public function save_new_email_address($hash)
+    {
+        $user = $this->db->where('confirm', $hash)
+                          ->get('user')
+                          ->result_array();
+        if (count($user) == 0)
+        {
+            return false;
+        }
+        $current_email = $user[0]['email'];
+        $new_email = $user[0]['new_email'];
         $this->db->trans_start();
         
         $this->db->where('owner', $current_email)
@@ -55,12 +76,21 @@ class User_model extends CI_Model
         $this->db->where('request_from', $current_email)
                  ->update('requests', array('request_from' => $new_email));
         
-        $this->db->where('id', $id)->update('user', $user);
+        $data = array(
+                      'email'     => $new_email, 
+                      'confirm'   => '',
+                      'new_email' => ''
+            );
+        
+        $this->db->where('email', $current_email)
+                 ->update('user', $data);
 
         $result = $this->db->affected_rows();
         
         if ($result > 0) 
         {
+            $this->load->library('my_photo');
+            $this->my_photo->rename_photo($current_email, $new_email);
             $this->session->set_userdata('email', $new_email);
         }
         

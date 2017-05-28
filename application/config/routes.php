@@ -7,5 +7,6 @@ $route['change_password/(:any)'] = 'authorization/reset_account/reset_password/$
 $route['register']               = 'users/user/register';
 $route['signup']                 = 'authorization/registration/register';
 $route['confirm/(:any)']         = 'authorization/registration/confirm/$1';
+$route['new_email/(:any)']       = 'settings/user/save_new_email_address/$1';
 $route['phone']                  = 'phone/main_phone/index';
 $route['404_override'] = '';

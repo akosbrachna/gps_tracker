@@ -74,7 +74,6 @@ class Tables extends Base_Controller
         $this->dbforge->add_field("gps_update_time datetime DEFAULT NULL");
         $this->dbforge->add_field("phone_number varchar(255) NOT NULL");
         $this->dbforge->add_field("confirm varchar(255) DEFAULT NULL");
-        $this->dbforge->add_field("forgot_password_hash varchar(255) DEFAULT NULL");
         $this->dbforge->add_field("createdAt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP");
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('user', TRUE);

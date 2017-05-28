@@ -29,7 +29,7 @@ class Reset_account_model extends CI_Model
     {   
         $email = $this->input->post('email');
         
-        if ($this->db->where('email', $email)->update('user', array('forgot_password_hash' => $hash)))
+        if ($this->db->where('email', $email)->update('user', array('confirm' => $hash)))
         {
             return true;
         }
@@ -39,7 +39,7 @@ class Reset_account_model extends CI_Model
     // authorization/reset_password
     public function check_hash($hash)
     {
-        $query = $this->db->where('forgot_password_hash', $hash)
+        $query = $this->db->where('confirm', $hash)
                           ->get('user');
         
         if ($query->num_rows() > 0)
@@ -57,10 +57,10 @@ class Reset_account_model extends CI_Model
     {
         $data = array(
                 'password' => md5($this->input->post('password')),
-                'forgot_password_hash' => ''
+                'confirm' => ''
             );
         
-        if ($this->db->where('forgot_password_hash', $hash)->update('user', $data))
+        if ($this->db->where('confirm', $hash)->update('user', $data))
         {
             return true;
         }

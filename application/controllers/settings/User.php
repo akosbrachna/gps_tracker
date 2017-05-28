@@ -26,14 +26,19 @@ class User extends Base_Controller
                 switch ($this->user_model->save_user_settings_form()) 
                 {
                     case 0:
-                        $this->data['message'] .= 'Something went wrong. Please try again. ';
+                        $this->data['message'] = 'Something went wrong. Please try again. ';
                         break;
                     case 1:
-                        $this->data['message'] .= 'Form has been succesfully modified. ';
+                        $this->data['message'] = 'Form has been succesfully modified. ';
                         break;
                     case 2:
-                        $this->data['message'] .= 'This email address already exists. '
-                                                . 'Please try some other email.';
+                        if ($this->send_email())
+                            $this->data['message'] = 'Email has been sent to your new email address. '
+                                                    . 'You need to verify it before it is permanently saved.';
+                        break;
+                    case 3:
+                        $this->data['message'] = 'This email address already exists. '
+                                                . 'Please try some other email address.';
                         break;
                     default:
                         break;
@@ -48,6 +53,41 @@ class User extends Base_Controller
         $this->load->view('settings/user/user_settings', $this->data);
     }
     
+    private function send_email()
+    {
+        $this->load->library('email');
+
+        $email = strtolower($this->input->post('email', true));
+        $hash  = md5($email).$this->session->userdata('session_id');
+        
+        $message = 'Dear '.$this->input->post('first_name').',<br /><br/>'
+                 . 'You\'ve changed your email address on our website. <br />'
+                 . 'Please follow <a href="'.base_url('new_email').'/'.$hash.'" >this link</a> '
+                 . 'to confirm your new email address.';
+        
+        $this->email->to($email);
+        $this->email->from('gps.tracker.webhost@gmail.com', 'GPS Tracker support');
+        $this->email->subject('Email modification request on GPS tracker website.');
+        $this->email->message($message);
+
+        return $this->email->send();
+    }
+    
+    public function save_new_email_address($hash)
+    {
+        if ($this->user_model->save_new_email_address($hash))
+        {
+            $this->data['message'] = 'New email address has been confirmed.<br /><br/>'
+                                    .'Back to <a href="'.base_url().'" >login page</a>';
+        }
+        else
+        {
+            $this->data['message'] = 'Something went wrong. '
+                                   . 'Please try to modify your email address again.';
+        }
+        $this->load->view('templates/message', $this->data);
+    }
+
     public function delete_account()
     {
         if ($this->user_model->delete_account())
