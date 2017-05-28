@@ -78,7 +78,7 @@ class User_model extends CI_Model
         
         $data = array(
                       'email'     => $new_email, 
-                      'confirm'   => '',
+                      'confirm'   => '1',
                       'new_email' => ''
             );
         

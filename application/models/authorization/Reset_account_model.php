@@ -57,7 +57,7 @@ class Reset_account_model extends CI_Model
     {
         $data = array(
                 'password' => md5($this->input->post('password')),
-                'confirm' => ''
+                'confirm' => '1'
             );
         
         if ($this->db->where('confirm', $hash)->update('user', $data))
