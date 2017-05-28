@@ -23,17 +23,22 @@ class User extends Base_Controller
             
             if ($this->form_validation->run())
             {
-                if ($this->user_model->save_user_settings_form())
+                switch ($this->user_model->save_user_settings_form()) 
                 {
-                    $this->data['message'] .= 'Form has been succesfully saved. ';
-                    $this->my_photo->save_my_photo($this->session->userdata('email'));
+                    case 0:
+                        $this->data['message'] .= 'Something went wrong. Please try again. ';
+                        break;
+                    case 1:
+                        $this->data['message'] .= 'Form has been succesfully modified. ';
+                        break;
+                    case 2:
+                        $this->data['message'] .= 'This email address already exists. '
+                                                . 'Please try some other email.';
+                        break;
+                    default:
+                        break;
                 }
-                else
-                {
-                    $this->data['message'] .= 'Something went wrong. '
-                                           . 'The username or email may address already exists. '
-                                           . 'Please try another username and/or email address. ';
-                }
+                $this->my_photo->save_my_photo($this->session->userdata('email'));
             }
             $this->send_messages();
             return;
