@@ -23,6 +23,8 @@ class User_model extends CI_Model
                               ->get('user')
                               ->num_rows();
             if ($check != 0) return 2;
+            $this->load->library('my_photo');
+            $this->my_photo->rename_photo($current_email, $new_email);
         }
         
         $user = array(
@@ -57,7 +59,10 @@ class User_model extends CI_Model
 
         $result = $this->db->affected_rows();
         
-        if ($result > 0) $this->session->set_userdata('email', $new_email);
+        if ($result > 0) 
+        {
+            $this->session->set_userdata('email', $new_email);
+        }
         
         $this->db->trans_complete();
         

@@ -31,6 +31,16 @@ class my_photo
         }
     }
     
+    public function rename_photo($current_email, $new_email)
+    {
+        $current_file = realpath(FCPATH.$this->folder.$current_email.'.jpg');
+        if (empty($current_file)) 
+        {
+            return false;
+        }
+        rename($current_file, realpath(FCPATH.$this->folder).'/'.$new_email.'.jpg');
+    }
+    
     public function get_photo_absolute_path($email)
     {
         $path = realpath(FCPATH.$this->folder.$email.'.jpg');
