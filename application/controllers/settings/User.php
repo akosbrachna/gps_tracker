@@ -78,7 +78,7 @@ class User extends Base_Controller
         if ($this->user_model->save_new_email_address($hash))
         {
             $this->data['message'] = 'New email address has been confirmed.<br /><br/>'
-                                    .'Back to <a href="'.base_url().'" >login page</a>';
+                                    .'Back to <a href="'.base_url().'" >main page</a>';
         }
         else
         {
