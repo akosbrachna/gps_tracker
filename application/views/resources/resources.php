@@ -14,6 +14,9 @@
     <a href="https://github.com/akosbrachna/gps_tracker/" target="_blank">github</a>. 
     It can be modified and used freely. There are simple instructions on the installation steps 
     if one wishes to run the website on one's own server.
+    <br/>
+    Google map can not be used for free in such commercial applications that offer map related sevices. 
+    See <a href="https://www.google.com/intl/en-US_US/help/terms_maps.html">terms of use</a>.
     <br/><br/>
     An android application is being under development too. That project is also shared on
     <a href="https://github.com/akosbrachna/gps_tracking_android" target="_blank">github</a> 
