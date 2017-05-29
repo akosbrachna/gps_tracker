@@ -31,7 +31,7 @@ class User_model extends CI_Model
             if ($check != 0) return 3;
             $result = 1;
             $user['new_email'] = $new_email;
-            $user['confirm']   = md5($new_email).$this->session->userdata('session_id');
+            $user['change_email']   = md5($new_email).$this->session->userdata('session_id');
         }
         if (!empty($password))
         {
@@ -50,7 +50,7 @@ class User_model extends CI_Model
     
     public function save_new_email_address($hash)
     {
-        $user = $this->db->where('confirm', $hash)
+        $user = $this->db->where('change_email', $hash)
                           ->get('user')
                           ->result_array();
         if (count($user) == 0)
@@ -78,7 +78,7 @@ class User_model extends CI_Model
         
         $data = array(
                       'email'     => $new_email, 
-                      'confirm'   => '1',
+                      'change_email'   => '',
                       'new_email' => ''
             );
         

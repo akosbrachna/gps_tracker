@@ -15,9 +15,10 @@ class Reset_account_model extends CI_Model
         $email = $this->input->post('email');
         $email = strtolower($email);
         $data = $this->db->where('email', $email)
-                          ->get('user');
+                          ->get('user')
+                          ->num_rows();
         
-        if ($data->num_rows() > 0)
+        if ($data > 0)
         {
             return true;
         }
@@ -29,7 +30,7 @@ class Reset_account_model extends CI_Model
     {   
         $email = $this->input->post('email');
         
-        if ($this->db->where('email', $email)->update('user', array('confirm' => $hash)))
+        if ($this->db->where('email', $email)->update('user', array('reset_password' => $hash)))
         {
             return true;
         }
@@ -39,10 +40,11 @@ class Reset_account_model extends CI_Model
     // authorization/reset_password
     public function check_hash($hash)
     {
-        $query = $this->db->where('confirm', $hash)
-                          ->get('user');
+        $query = $this->db->where('reset_password', $hash)
+                          ->get('user')
+                          ->num_rows();
         
-        if ($query->num_rows() > 0)
+        if ($query > 0)
         {
             return true;
         }
@@ -57,10 +59,10 @@ class Reset_account_model extends CI_Model
     {
         $data = array(
                 'password' => md5($this->input->post('password')),
-                'confirm' => '1'
+                'reset_password' => ''
             );
         
-        if ($this->db->where('confirm', $hash)->update('user', $data))
+        if ($this->db->where('reset_password', $hash)->update('user', $data))
         {
             return true;
         }
