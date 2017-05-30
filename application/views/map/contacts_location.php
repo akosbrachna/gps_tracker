@@ -163,6 +163,7 @@ function create_marker(value)
     });
 }
 // handle the directions service
+// Direction service requires valid API KEY from google!!!
 function draw_route(value)
 {
     var user = users[value.id];
