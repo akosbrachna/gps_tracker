@@ -55,6 +55,14 @@ Replace localhost with your server domain.
 A working example can be found here: https://akosbrachna.000webhostapp.com/
 
 At the time i created the project i used xampp 5.6.15 which can be accessed here:
+
+Windows:
 https://sourceforge.net/projects/xampp/files/XAMPP%20Windows/5.6.15/
+
+Mac OS:
+https://sourceforge.net/projects/xampp/files/XAMPP%20Mac%20OS%20X/5.6.15/
+
+Linux:
+https://sourceforge.net/projects/xampp/files/XAMPP%20Linux/5.6.15/
 
 Unfortunately i don't have time to maintain and upgrade the project to newer versions. 
