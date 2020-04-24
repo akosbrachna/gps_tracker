@@ -25,6 +25,7 @@ is continuously sending the gps locations from the phone to the server. The andr
 the coordinates to a given phone number as an sms text message in case no server or 3G connection is available.
 That project is also shared on
 <a href="https://github.com/akosbrachna/gps_tracking_android" target="_blank">github</a> 
+<img src="https://github.com/akosbrachna/gps_tracker/blob/master/web/pics/gps_tracker_android.png" height="240" width="135">
     
 
 The project
