@@ -20,10 +20,9 @@ Category settings (permission, visibility) are applied to all users in the selec
 If the website is running in a phone's browser it will be periodically sending the gps coordinates 
 to the server so long as the phone's browser is open. You will also see your contacts' locations on the map.
 
-An android application is being developed too. The android application as a foreground service 
-can continuously be sending the gps locations from the phone to the server without having to keep 
-the browser window open. The android application can also send the coordinates to 
-a given phone number as an sms text message in case no server or 3G connection is available.
+An android application has been developed too. The android application as a foreground service 
+is continuously sending the gps locations from the phone to the server. The android application can also send 
+the coordinates to a given phone number as an sms text message in case no server or 3G connection is available.
 That project is also shared on
 <a href="https://github.com/akosbrachna/gps_tracking_android" target="_blank">github</a> 
     
@@ -55,8 +54,7 @@ Replace localhost with your server domain.
 A working example can be found here: https://akosbrachna.000webhostapp.com/
 Unfortunately registration does not work in the live demo any more because gmail stopped supporting email relaying.
 I used gmail to send out confirmation emails on registration requests.
-But if you set up the project locally you can bypass the email confirmaton by setting the confirm field to 1 in the user table as shown in the picture:
-https://drive.google.com/file/d/1ShQ-G4HQh_JTH9MxReQcZBhwJofpgouJ/view?usp=sharing
+But if you set up the project locally you can bypass the email confirmaton by setting the confirm field to 1 in the user table as shown in the <a href="https://drive.google.com/file/d/1ShQ-G4HQh_JTH9MxReQcZBhwJofpgouJ/view?usp=sharing" target="_blank">picture</a>
 
 At the time i created the project i used xampp 5.6.15 which can be accessed here:
 
