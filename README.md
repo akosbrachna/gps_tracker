@@ -54,7 +54,7 @@ Replace localhost with your server domain.
 A working example can be found here: https://akosbrachna.000webhostapp.com/
 Unfortunately registration does not work in the live demo any more because gmail stopped supporting email relaying.
 I used gmail to send out confirmation emails on registration requests.
-But if you set up the project locally you can bypass the email confirmaton by setting the confirm field to 1 in the user table as shown in the <a href="https://drive.google.com/file/d/1ShQ-G4HQh_JTH9MxReQcZBhwJofpgouJ/view?usp=sharing" target="_blank">picture</a>
+But if you set up the project locally you can bypass the email confirmaton by setting the confirm field to 1 in the user table as shown in the <img src="https://www.dropbox.com/s/6p5wmrorylu8c37/reg.png">
 
 At the time i created the project i used xampp 5.6.15 which can be accessed here:
 
