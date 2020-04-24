@@ -68,4 +68,4 @@ https://sourceforge.net/projects/xampp/files/XAMPP%20Mac%20OS%20X/5.6.15/
 Linux:
 https://sourceforge.net/projects/xampp/files/XAMPP%20Linux/5.6.15/
 
-Unfortunately i don't have time to maintain and upgrade the project to newer versions and this project does not work with latest server environments.
+Unfortunately i don't have time to maintain and upgrade the project to newer versions and this project does not work with the latest server environments.
