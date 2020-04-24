@@ -23,8 +23,8 @@ to the server so long as the phone's browser is open. You will also see your con
 An android application has been developed too. The android application as a foreground service 
 is continuously sending the gps locations from the phone to the server. The android application can also send 
 the coordinates to a given phone number as an sms text message in case no server or 3G connection is available.
-That project is also shared on
-<a href="https://github.com/akosbrachna/gps_tracking_android" target="_blank">github</a> 
+That project is also shared on <a href="https://github.com/akosbrachna/gps_tracking_android" target="_blank">github</a>
+<br />
 <img src="https://github.com/akosbrachna/gps_tracker/blob/master/web/pics/gps_tracker_android.png" height="240" width="135">
     
 
