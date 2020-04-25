@@ -5,7 +5,7 @@ About the application
 GPS tracker is a simple web based map tracking application.
 
 A device(smartphone, tablet etc) with a web browser and gps capability is needed to send gps locations to the website which can be 
-installed on any web server that runs apache php mysql.
+installed on any web server that runs apache php mysql (see recommended version info at the end).
 
 Registered users share their gps locations through the website and can track each other on the map.
 
