@@ -53,9 +53,7 @@ Replace localhost with your server domain.
 5. application/config/email.php - the smtp provider should be set
 
 A working example can be found here: https://akosbrachna.000webhostapp.com/
-Unfortunately registration does not work in the live demo any more because gmail stopped supporting email relaying.
-I used gmail to send out confirmation emails on registration requests.
-But if you set up the project locally you can bypass the email confirmaton by setting the confirm field to 1 in the user table as shown in the picture: <img src="https://github.com/akosbrachna/gps_tracker/blob/master/web/pics/reg.png">
+I use gmail as an smtp relay to send out confirmation emails on registration requests but unfortunately registration does not work in the live demo any more because gmail evaluates the confirmation link suspicious therefore it blocks the outgoing message. But if you set up the project locally you can bypass the email confirmaton by setting the confirm field to 1 in the user table as shown in the picture: <img src="https://github.com/akosbrachna/gps_tracker/blob/master/web/pics/reg.png">
 
 At the time i created the project i used xampp 5.6.15 which can be accessed here:
 
