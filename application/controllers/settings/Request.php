@@ -49,11 +49,12 @@ class Request extends Base_Controller
     private function send_email()
     {
         $this->load->library('email');
+        $email = $this->input->post('email');
+        $user  = $this->user_model->get_user_by_email($email);
 
-        $message = 'Dear '.$this->input->post('first_name').'!<br /><br/>'
-                  .$this->session->userdata('email').' has sent you a friend request from '
-                  .'<a href="'.base_url().'" >GPS tracker</a>.';
-        $this->email->to($this->input->post('email'));
+        $message = 'Dear '.$user['first_name'].'!<br /><br/>'
+                  .$this->session->userdata('email').' has sent you a friend request from GPS tracker.';
+        $this->email->to($email);
         $this->email->from('gps_tracker@gmail.com', 'GPS Tracker support');
         $this->email->subject('Friend request from GPS tracker from '.$this->session->userdata('email'));
         $this->email->message($message);

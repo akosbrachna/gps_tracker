@@ -107,6 +107,14 @@ class User_model extends CI_Model
         return $data[0];
     }
     
+    public function get_user_by_email($email)
+    {
+        $data = $this->db->where('email', $email)
+                         ->get('user')
+                         ->result_array();
+        return $data[0];
+    }
+    
     public function delete_account()
     {
         $user = $this->session->userdata('email');

@@ -61,7 +61,7 @@ class Map_model extends CI_Model
     
     public function set_my_location()
     {
-        //date_default_timezone_set('UTC');
+        date_default_timezone_set('Europe/Prague');
         $latitude  = $this->input->post('latitude', true);
         if (empty($latitude)) return;
         $longitude = $this->input->post('longitude', true);

@@ -76,7 +76,12 @@ class Registration extends Base_Controller
         $message = 'Dear '.$this->input->post('first_name').',<br /><br/>'
                  . 'You\'ve registered on our website. <br />'
                  . 'If it was not you, ignore this email otherwise please follow this link: '
-                 . '<a href="'.base_url('confirm').'/'.$hash.'" >Confirm email</a>';
+                 . 'httpscolonslashslashakosbrachnadot000webhostappdotcomslashconfirmslash'.$hash.' '
+                 . '<br />Please replace colon, slash and dot respectively to open the above link in your browser '
+                 . 'to confirm your registration <br />'
+                 . 'The reason why i dont present the link correctly because gmail '
+                 . 'would evaluate the link suspicious and it would block the message. This is '
+                 . 'why it has to be done manually.';
         
         $this->email->to($email);
         $this->email->from('gps.tracker.webhost@gmail.com', 'GPS Tracker support');

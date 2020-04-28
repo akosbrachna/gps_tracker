@@ -36,9 +36,15 @@ class Reset_account extends Base_Controller
                         $message = 'Hello '.$this->input->post('email').'!<br /><br />'
                                  . 'There was a request to change your password. '
                                  . 'If you did not make this request, just ignore this email.<br />'
-                                 . 'Otherwise, please click the following link '
+                                 . 'Otherwise, please follow this link '
                                  . 'to change your password on the GPS Tracker website:<br />'
-                                 . '<a href="'.base_url("change_password/$hash").'" >Change password</a>';
+                                 .  'httpscolonslashslashakosbrachnadot000webhostappdotcomslashchange_passwordslash'.$hash.' '
+                                 . '<br />Please replace colon, slash and dot respectively to open the above link in your browser '
+                                 . 'to reset your password <br />'
+                                 . '<br/> '
+                                 . 'The reason why i dont present the link correctly because gmail '
+                                 . 'would evaluate the link suspicious and it would block the message. This is '
+                                 . 'why it has to be done manually.';
 
                         $this->email->from('gps_tracker@gmail.com', 'GPS Tracker support');
                         $this->email->to($this->input->post('email'));

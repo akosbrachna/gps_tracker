@@ -67,7 +67,7 @@
     <br/>
     <p>
       <label for="frequency">Refresh frequency: </label>
-      <input type="number" id="frequency" value="3" min="1" max="10" onchange="frequency_changed(this);">minutes<br/>
+      <input type="number" id="frequency" value="1" min="1" max="10" onblur="frequency_changed(this);">minutes<br/>
       Value should be between 1 and 10.
     </p>
     <br/>
@@ -81,7 +81,7 @@
 <div id="map_canvas_phone"></div>
 
 <script>
-    var frequency = 3;
+    var frequency = 1;
     var timer = null;
     function frequency_changed(input)
     {
